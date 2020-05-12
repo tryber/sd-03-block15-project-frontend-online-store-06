@@ -14,7 +14,6 @@ class CategoryList extends React.Component {
 
   async fetchCategories() {
     api.getCategories()
-      .then((response) => console.log(response.json()))
       .then((categories) => this.setState({ categories }))
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
