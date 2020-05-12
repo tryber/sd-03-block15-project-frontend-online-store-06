@@ -25,8 +25,7 @@ class CategoryList extends React.Component {
         <ul>
           <h1>Category List</h1>
           {categories.length && categories.map(({ id, name }) =>
-            <li key={id} data-testid="category" id={id}>{name}</li>
-          )}
+            <li key={id} data-testid="category" id={id}>{name}</li>)}
         </ul>
       </div>
     );
