@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as servicesApi from './services/api';
+import * as api from './services/api';
 
 class CategoryList extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class CategoryList extends React.Component {
   }
 
   async fetchCategories() {
-    return await servicesApi.getCategories()
+    return await api.getCategories()
       .then((response) => console.log(response.json()))
       .then((categories) => this.setState({ categories }))
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error ));
