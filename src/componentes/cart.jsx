@@ -22,7 +22,7 @@ class Cart extends Component {
             {
                 empty ? <div className='Vazio'>
                             <img src='../images/box.png' alt='Caixa vazia'/>
-                            <h3> Caixa vazia </h3>
+                            <h3 data-testid="shopping-cart-empty-message" >Seu carrinho está vazio</h3>
                         </div> : 1
             }
         </div>)
