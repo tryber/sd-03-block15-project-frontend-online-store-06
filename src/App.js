@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/cart" component={Cart} />
-          <Route exact path="/"> <CategoryList /></Route>
+          <Route exact path="/"><CategoryList /></Route>
         </Switch>
       </Router>      
     </div>
