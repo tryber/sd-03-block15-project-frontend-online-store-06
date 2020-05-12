@@ -13,10 +13,10 @@ class CategoryList extends React.Component {
   }
 
   async fetchCategories() {
-    return await api.getCategories()
+    api.getCategories()
       .then((response) => console.log(response.json()))
       .then((categories) => this.setState({ categories }))
-      .catch((error) => console.log('Não foi possível buscar as categorias por:', error ));
+      .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
   render() {
@@ -25,12 +25,12 @@ class CategoryList extends React.Component {
       <div>
         <ul>
           <h1>Category List</h1>
-          {categories.length && categories.map(({ id, name }) => {
-            return <li key={id} data-testid="category" id={id}>{name}</li>
-          }) }
+          {categories.length && categories.map(({ id, name }) =>
+            <li key={id} data-testid="category" id={id}>{name}</li>
+          )}
         </ul>
       </div>
-    )
+    );
   }
 }
 
