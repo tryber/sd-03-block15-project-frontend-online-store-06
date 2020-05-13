@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function ProductDetails({ title, thumbnail, price, ...details}) {
+function ProductDetails({ title, thumbnail, price, ...details }) {
   return (
     <div>
       <h3 data-testid="product-detail-name">{title}</h3>
@@ -10,7 +10,7 @@ function ProductDetails({ title, thumbnail, price, ...details}) {
         <figcaption>{title} image</figcaption>
       </figure>
       <section>
-        {Object.entries(details).map(([ feature, value]) =>
+        {Object.entries(details).map(([feature, value]) =>
           <li key={feature}>{feature}: {value}</li>)}
       </section>
       <Link path="/cart">Carrinho</Link>
