@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import * as api from '../services/api';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
-import * as api from '../services/api';
 import CategoryList from './CategoryList';
 
 class ProductLibrary extends React.Component {
@@ -55,6 +57,9 @@ class ProductLibrary extends React.Component {
           onSubmit={() => this.findProducts()}
         />
         <ProductList products={products} searchText={searchText} />
+        <Link to="/cart" data-testid="shopping-cart-button" >
+          <img src="../images/carrinho.png" alt="cart-button" />
+        </Link>
       </div>
 
     );
