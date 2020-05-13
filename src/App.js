@@ -1,13 +1,14 @@
 import React from 'react';
-
-import './App.css';
-import CategoryList from './CategoryList';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ProductLibrary from './element/ProductLibrary';
 
 function App() {
   return (
-    <div className="App">
-      <CategoryList />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={ProductLibrary} />
+      </Switch>
+    </Router>
   );
 }
 
