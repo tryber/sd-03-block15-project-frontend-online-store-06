@@ -11,6 +11,7 @@ class ProductLibrary extends React.Component {
       selectCategory: ' ',
       products: [],
     };
+    this.findProducts = this.findProducts.bind(this);
   }
 
   componentDidMount() {
@@ -21,7 +22,7 @@ class ProductLibrary extends React.Component {
     this.setState(() => ({ searchText: value }));
   }
 
-  textChange(name, event) {
+  textChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
   }
@@ -41,7 +42,7 @@ class ProductLibrary extends React.Component {
           onSearchTextChange={(event) => this.textChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
-        <ProductList products={(products, searchText)} />
+        <ProductList products={products} searchText={searchText} />
       </div>
     );
   }

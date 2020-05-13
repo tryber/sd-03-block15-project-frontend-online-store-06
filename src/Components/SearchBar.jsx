@@ -2,7 +2,7 @@ import React from 'react';
 
 class SearchBar extends React.Component {
   render() {
-    const { searchText, onSearchTextChange, onSubmit } = this.state;
+    const { searchText, onSearchTextChange, onSubmit } = this.props;
     return (
       <form>
         <label htmlFor="searchText">
@@ -10,11 +10,11 @@ class SearchBar extends React.Component {
             value={searchText}
             name="searchText"
             data-testid="query-input"
-            onCategoryChange={onSearchTextChange}
+            onChange={onSearchTextChange}
             type="text"
           />
         </label>
-        <button type="submit" data-testid="query-button" onClick={onSubmit()}>
+        <button type="submit" data-testid="query-button" onClick={onSubmit}>
           Search
         </button>
         <p>teste</p>

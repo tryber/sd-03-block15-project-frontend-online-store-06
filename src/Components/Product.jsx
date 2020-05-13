@@ -12,7 +12,7 @@ class Product extends React.Component {
         <p>{`R$ ${price}`}</p>
         <Link
           data-testid="product-detail-link"
-          path={`/products/${name}`}
+          path={`/products/${title}`}
         >
           Detalhes
         </Link>
