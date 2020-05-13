@@ -52,7 +52,7 @@ class ProductLibrary extends React.Component {
         />
         <ProductList products={products} searchText={searchText} />
         <Link to="/cart" data-testid="shopping-cart-button" >
-          <img src={'../images/carrinho.png'} alt="cart-button" />
+          <img src="../images/carrinho.png" alt="cart-button" />
         </Link>
       </div>
 
