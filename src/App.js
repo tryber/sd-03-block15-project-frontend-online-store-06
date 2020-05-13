@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import CategoryList from './Components/CategoryList';
 import ProductDetails from './Components/ProductDetails';
 
 function App() {
