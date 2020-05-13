@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import ProductLibrary from './element/ProductLibrary';
 import CategoryList from './Components/CategoryList';
 import ProductDetails from './Components/ProductDetails';
 
@@ -11,7 +12,7 @@ function App() {
         <Switch>
           <Route path="/products/:id" component={ProductDetails} />
           <Route exact path="/">
-            <CategoryList />
+            <Route exact path="/" component={ProductLibrary} />
           </Route>
         </Switch>
       </Router>
