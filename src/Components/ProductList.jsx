@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
 import Product from './Product';
 
 class ProductList extends React.Component {
@@ -21,8 +21,6 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.propTypes = {
-  products: propTypes.array.isRequired,
-}
+ProductList.propTypes = { products: propTypes.array.isRequired };
 
 export default ProductList;
