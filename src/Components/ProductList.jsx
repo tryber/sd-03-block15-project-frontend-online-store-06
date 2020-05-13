@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types'
-
 import Product from './Product';
 
 class ProductList extends React.Component {
@@ -13,10 +12,10 @@ class ProductList extends React.Component {
         </h4>
       );
     }
-    if (products.length === 0) return <h4>Nenhum Produto foi encontrado</h4>;
+    if (products.results.length === 0) return <h4>Nenhum Produto foi encontrado</h4>;
     return (
       <div>
-        {products.results.map((product) => (<Product product={product.id} />)) }
+        {products.results.map((product) => (<Product product={product} key={product.id} />))}
       </div>
     );
   }

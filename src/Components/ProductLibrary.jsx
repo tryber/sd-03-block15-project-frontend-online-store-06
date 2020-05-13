@@ -2,27 +2,27 @@ import React from 'react';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
 import * as api from '../services/api';
+import CategoryList from './CategoryList';
 
 class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: ' ',
-      selectCategory: ' ',
+      searchText: '',
+      selectCategory: '',
       products: [],
+      categories: [],
     };
     this.findProducts = this.findProducts.bind(this);
   }
 
   componentDidMount() {
-
+    api.getCategories()
+      .then((categories) => this.setState({ categories }))
+      .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
-  handleSubmit(value) {
-    this.setState(() => ({ searchText: value }));
-  }
-
-  textChange(event, name) {
+  textOrCategoryChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
   }
@@ -34,12 +34,18 @@ class ProductLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, products } = this.state;
+    const { searchText, products, categories, selectCategory } = this.state;
+    console.log(searchText);
     return (
       <div>
+        <CategoryList
+          categories={categories}
+          selectCategory={selectCategory}
+          onCategoryChange={(event) => this.textOrCategoryChange(event, 'selectCategory')}
+        />
         <SearchBar
           searchText={searchText}
-          onSearchTextChange={(event) => this.textChange(event, 'searchText')}
+          onSearchTextChange={(event) => this.textOrCategoryChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
         <ProductList products={products} searchText={searchText} />

@@ -17,7 +17,6 @@ class SearchBar extends React.Component {
         <button type="submit" data-testid="query-button" onClick={onSubmit}>
           Search
         </button>
-        <p>teste</p>
       </form>
     );
   }

@@ -1,31 +1,27 @@
 import React from 'react';
 
-import * as api from '../services/api';
-
 class CategoryList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { categories: [] };
-  }
-
-  componentDidMount() {
-    this.fetchCategories();
-  }
-
-  async fetchCategories() {
-    api.getCategories()
-      .then((categories) => this.setState({ categories }))
-      .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
-  }
-
   render() {
-    const { categories } = this.state;
+    const { categories, onCategoryChange, selectCategory } = this.props;
     return (
       <div>
         <ul>
           <h1>Category List</h1>
-          {categories.length && categories.map(({ id, name }) =>
-            <li key={id} data-testid="category" id={id}>{name}</li>)}
+          {categories.map(({ id, name }) => (
+            <li key={id} data-testid="category">
+              <label htmlFor="categories">
+                <input
+                  type="radio"
+                  id={id}
+                  value={id}
+                  name="categories"
+                  checked={selectCategory === id}
+                  onChange={onCategoryChange}
+                />
+                {name}
+              </label>
+            </li>
+          ))}
         </ul>
       </div>
     );
