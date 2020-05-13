@@ -1,8 +1,9 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
-import Cart from './componentes/cart';
 import CategoryList from './CategoryList';
+import Cart from './componentes/cart';
+import CartImg from './images/carrinho.png'
 
 function App() {
   return (
@@ -10,7 +11,12 @@ function App() {
       <Router>
         <Switch>
           <Route path="/cart" component={Cart} />
-          <Route exact path="/"><CategoryList /></Route>
+          <Route exact path="/">
+            <CategoryList />
+            <Link to='/cart' data-testid="shopping-cart-button" >
+              <img src={CartImg} alt="cart-button" />
+            </Link>
+          </Route>
         </Switch>
       </Router>
     </div>
