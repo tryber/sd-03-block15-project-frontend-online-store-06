@@ -22,9 +22,15 @@ class ProductLibrary extends React.Component {
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
-  textOrCategoryChange(event, name) {
+  textChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
+  }
+
+  categoryChange(event, name) {
+    const { value } = event.target;
+    this.setState({ [name]: value });
+    this.findProducts();
   }
 
   findProducts() {
@@ -41,11 +47,11 @@ class ProductLibrary extends React.Component {
         <CategoryList
           categories={categories}
           selectCategory={selectCategory}
-          onCategoryChange={(event) => this.textOrCategoryChange(event, 'selectCategory')}
+          onCategoryChange={async (event) => this.textChange(event, 'selectCategory')}
         />
         <SearchBar
           searchText={searchText}
-          onSearchTextChange={(event) => this.textOrCategoryChange(event, 'searchText')}
+          onSearchTextChange={(event) => this.categoryChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
         <ProductList products={products} searchText={searchText} />
