@@ -1,23 +1,35 @@
 import React from 'react';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
-import * as api from './services/api';
+import * as api from '../services/api';
 
 class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       searchText: '',
+      selectCategory: '',
       products: [],
     };
   }
 
-  componentDidMount {
-    
+  componentDidMount() {
+
   }
 
   handleSubmit(value) {
     this.setState(() => ({ searchText: value }));
+  }
+
+  textChange(name, event) {
+    const { value } = event.target;
+    this.setState({ [name]: value });
+  }
+
+  findProducts() {
+    const { searchText, selectCategory } = this.state;
+    return api.getProductsFromCategoryAndQuery(selectCategory, searchText)
+      .then((products) => this.setState({ products }));
   }
 
   render() {
@@ -26,11 +38,10 @@ class ProductLibrary extends React.Component {
       <div>
         <SearchBar
           searchText={searchText}
-          onSubmit={(event) => this.handleSubmit(event, 'searchText')}
+          onSearchTextChange={(event) => this.textChange(event, 'searchText')}
+          onSubmit={() => this.findProducts()}
         />
-        <h4 data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</h4>
-
-        <ProductList products={products} />
+        <ProductList products={(products, searchText)} />
       </div>
     );
   }
