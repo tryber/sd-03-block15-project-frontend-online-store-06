@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import box from '../images/box.png'
+import box from '../images/box.png';
 
 class Cart extends Component {
   constructor(props) {
@@ -9,12 +9,12 @@ class Cart extends Component {
       cart: {
         arr: [],
         qt: 1,
-      }
+      },
     };
   }
 
   render() {
-    const {empty} = this.state;
+    const { empty } = this.state;
 
     return (
       <div className="cart">
