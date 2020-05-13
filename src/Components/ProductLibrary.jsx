@@ -57,7 +57,7 @@ class ProductLibrary extends React.Component {
           onSubmit={() => this.findProducts()}
         />
         <ProductList products={products} searchText={searchText} />
-        <Link to="/cart" data-testid="shopping-cart-button" >
+        <Link to="/cart" data-testid="shopping-cart-button">
           <img src="../images/carrinho.png" alt="cart-button" />
         </Link>
       </div>
