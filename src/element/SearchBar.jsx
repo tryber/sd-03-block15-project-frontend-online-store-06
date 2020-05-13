@@ -14,9 +14,10 @@ class SearchBar extends React.Component {
             type="text"
           />
         </label>
-        <button type="button" data-testid="query-button" onClick={onSubmit()}>
+        <button type="submit" data-testid="query-button" onClick={onSubmit()}>
           Search
         </button>
+        <p>teste</p>
       </form>
     );
   }
