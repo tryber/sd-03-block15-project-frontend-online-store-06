@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ProductLibrary from './element/ProductLibrary';
+import ProductLibrary from './Components/ProductLibrary';
 
 function App() {
   return (

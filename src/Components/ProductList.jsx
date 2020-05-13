@@ -11,10 +11,10 @@ class ProductList extends React.Component {
         </h4>
       );
     }
-    if (products.results.length === 0) return <h4>Nenhum Produto foi encontrado</h4>;
+    if (products.length === 0) return <h4>Nenhum Produto foi encontrado</h4>;
     return (
       <div>
-        {products.results.map((product) => (<Product product={product} />)) }
+        {products.results.map((product) => (<Product product={product} key={product.id} />))}
       </div>
     );
   }
