@@ -7,8 +7,8 @@ class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchText: '',
-      selectCategory: '',
+      searchText: ' ',
+      selectCategory: ' ',
       products: [],
     };
   }
