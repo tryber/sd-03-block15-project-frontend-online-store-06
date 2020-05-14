@@ -63,7 +63,8 @@ class ProductLibrary extends React.Component {
           onSubmit={() => this.findProducts()}
         />
         <Route exact path="/" render={() => <ProductList products={products} />} />
-        <Route path="/products/:id"
+        <Route
+          path="/products/:id"
           render={(props) => <ProductDetails {...props} products={products.results} />}
         />
         <Link to="/cart" data-testid="shopping-cart-button">

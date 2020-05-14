@@ -11,6 +11,10 @@ class ProductDetails extends React.Component {
   componentDidMount() {
     const { products, match: { params } } = this.props;
     const product = products.find((product) => product.id === params.id);
+    this.setProduct(product);
+  }
+  
+  setProduct(product) {
     this.setState({ product });
   }
 
@@ -37,15 +41,13 @@ class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
-  product: PropTypes.arrayOf(PropTypes.shape({
+  products: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
-  }).isRequired),
+  }).isRequired).isRequired,
   match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired,
+    params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,
   }).isRequired,
 };
 
