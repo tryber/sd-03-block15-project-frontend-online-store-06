@@ -10,10 +10,10 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const { products, match: { params } } = this.props;
-    const product = products.find((product) => product.id === params.id);
+    const product = products.find((prod) => prod.id === params.id);
     this.setProduct(product);
   }
-  
+
   setProduct(product) {
     this.setState({ product });
   }
@@ -46,9 +46,9 @@ ProductDetails.propTypes = {
     price: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
   }).isRequired).isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,
-  }).isRequired,
+  match: PropTypes.shape(
+    { params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired,}
+  ).isRequired,
 };
 
 export default ProductDetails;
