@@ -32,7 +32,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { product, foundOrPending, ...ratings } = this.state;
+    const { product, foundOrPending } = this.state;
     if (!foundOrPending) return porductNotFound();
     const { title, thumbnail, price, ...details } = product;
     return (

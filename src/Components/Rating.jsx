@@ -27,7 +27,7 @@ const renderComment = (value, onChange) => (
       name="commentValue"
       value={value}
       onChange={(event) => onChange(event, 'commentValue')}
-    ></textarea>
+    />
   </div>
 );
 
@@ -53,11 +53,11 @@ class Rating extends React.Component {
 
   handleRatingChanges(event, name) {
     this.setState({ [name]: event.target.value });
-    localStorage.setItem(name, event.target.value.toString() );
+    localStorage.setItem(name, event.target.value.toString());
   }
 
   render() {
-    const {  starsValue, commentValue } = this.props;
+    const { starsValue, commentValue } = this.props;
     return (
       <form>
         {renderStars(starsValue, this.handleRatingChanges)}
