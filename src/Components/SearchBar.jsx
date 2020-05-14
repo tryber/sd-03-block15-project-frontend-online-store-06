@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class SearchBar extends React.Component {
   render() {
@@ -14,12 +15,18 @@ class SearchBar extends React.Component {
             type="text"
           />
         </label>
-        <button type="submit" data-testid="query-button" onClick={onSubmit}>
+        <button type="button" data-testid="query-button" onClick={onSubmit}>
           Search
         </button>
       </form>
     );
   }
 }
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string.isRequired,
+  onSearchTextChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default SearchBar;
