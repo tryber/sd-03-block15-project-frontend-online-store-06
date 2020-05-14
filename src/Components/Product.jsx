@@ -62,25 +62,18 @@ class Product extends React.Component {
     const { product } = this.props;
     const { id, title, price, thumbnail } = product;
     return (
-<<<<<<< HEAD
       <div>
         <div data-testid="product">
           <img src={thumbnail} alt={`${title} img`} />
           <p>{title}</p>
           <p>{`R$ ${price}`}</p>
+          <Link data-testid="product-detail-link" to={`/products/${id}`}>
+            Detalhes
+          </Link>
         </div>
         <div>
           <button type="button" data-testid="product-add-to-cart" onClick={this.buyButton(title, price, thumbnail)}>Adicionar ao Carrinho</button>
         </div>
-=======
-      <div data-testid="product">
-        <img src={thumbnail} alt={`${title} img`} />
-        <p>{title}</p>
-        <p>{`R$ ${price}`}</p>
-        <Link data-testid="product-detail-link" to={`/products/${id}`}>
-          Detalhes
-        </Link>
->>>>>>> b4bd0eb9d844665433ea2bd530c0586e2e496604
       </div>
     );
   }
