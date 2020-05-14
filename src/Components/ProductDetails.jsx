@@ -34,7 +34,6 @@ class ProductDetails extends React.Component {
               <li key={feature}>{feature}: {value}</li> : null
           ))}
         </section>
-        <Link to="/cart">Carrinho</Link>
       </div>
     );
   }

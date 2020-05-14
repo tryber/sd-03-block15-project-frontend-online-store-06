@@ -52,17 +52,19 @@ class ProductLibrary extends React.Component {
     const { searchText, products, categories, selectCategory } = this.state;
     return (
       <div>
-        <CategoryList
-          categories={categories}
-          selectCategory={selectCategory}
-          onCategoryChange={(event) => this.categoryChange(event, 'selectCategory')}
-        />
-        <SearchBar
-          searchText={searchText}
-          onSearchTextChange={(event) => this.textChange(event, 'searchText')}
-          onSubmit={() => this.findProducts()}
-        />
-        <Route exact path="/" render={() => <ProductList products={products} />} />
+        <Route exact path="/">
+          <CategoryList
+            categories={categories}
+            selectCategory={selectCategory}
+            onCategoryChange={(event) => this.categoryChange(event, 'selectCategory')}
+          />
+          <SearchBar
+            searchText={searchText}
+            onSearchTextChange={(event) => this.textChange(event, 'searchText')}
+            onSubmit={() => this.findProducts()}
+          />
+          <ProductList products={products} />
+        </Route>
         <Route
           path="/products/:id"
           render={(props) => <ProductDetails {...props} products={products.results} />}
