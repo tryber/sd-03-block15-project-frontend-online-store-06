@@ -1,7 +1,8 @@
 import React from 'react';
+
+import * as api from '../services/api';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
-import * as api from '../services/api';
 import CategoryList from './CategoryList';
 
 class ProductLibrary extends React.Component {
@@ -10,7 +11,7 @@ class ProductLibrary extends React.Component {
     this.state = {
       searchText: '',
       selectCategory: '',
-      products: [],
+      products: {},
       categories: [],
     };
     this.findProducts = this.findProducts.bind(this);
@@ -22,12 +23,19 @@ class ProductLibrary extends React.Component {
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
-  textOrCategoryChange(event, name) {
+  textChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
   }
 
-  findProducts() {
+  categoryChange(event, name) {
+    const { value } = event.target;
+    this.setState({ [name]: value });
+    this.findProducts('category');
+  }
+
+  findProducts(str) {
+    console.log(str);
     const { searchText, selectCategory } = this.state;
     return api.getProductsFromCategoryAndQuery(selectCategory, searchText)
       .then((products) => this.setState({ products }));
@@ -40,12 +48,12 @@ class ProductLibrary extends React.Component {
         <CategoryList
           categories={categories}
           selectCategory={selectCategory}
-          onCategoryChange={(event) => this.textOrCategoryChange(event, 'selectCategory')}
+          onCategoryChange={(event) => this.categoryChange(event, 'selectCategory')}
         />
         <SearchBar
           searchText={searchText}
-          onSearchTextChange={(event) => this.textOrCategoryChange(event, 'searchText')}
-          onSubmit={() => this.findProducts()}
+          onSearchTextChange={(event) => this.textChange(event, 'searchText')}
+          onSubmit={() => this.findProducts('searchText')}
         />
         <ProductList products={products} searchText={searchText} />
       </div>

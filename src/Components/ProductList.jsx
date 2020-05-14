@@ -1,5 +1,5 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Product from './Product';
 
 class ProductList extends React.Component {
@@ -12,7 +12,8 @@ class ProductList extends React.Component {
         </h4>
       );
     }
-    if (products.results.length === 0) return <h4>Nenhum Produto foi encontrado</h4>;
+    console.log(products)
+    if (!products.results) return <h4>Nenhum Produto foi encontrado</h4>;
     return (
       <div>
         {products.results.map((product) => (<Product product={product} key={product.id} />))}
@@ -22,8 +23,14 @@ class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  products: propTypes.arrayOf(propTypes.object.isRequired).isRequired,
-  searchText: propTypes.string.isRequired,
+  products: PropTypes.shape({
+    results: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+    })),
+  }).isRequired,
+  searchText: PropTypes.string.isRequired,
 };
 
 export default ProductList;

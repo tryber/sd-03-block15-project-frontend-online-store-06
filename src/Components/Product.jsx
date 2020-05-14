@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Product extends React.Component {
@@ -16,6 +17,14 @@ class Product extends React.Component {
       </div>
     );
   }
+}
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })
 }
 
 export default Product;

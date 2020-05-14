@@ -9,7 +9,7 @@ class CategoryList extends React.Component {
           <h1>Category List</h1>
           {categories.map(({ id, name }) => (
             <li key={id} data-testid="category">
-              <label htmlFor="categories">
+              <label htmlFor={id}>
                 <input
                   type="radio"
                   id={id}
@@ -27,5 +27,14 @@ class CategoryList extends React.Component {
     );
   }
 }
+
+CategoryList.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
+  onCategoryChange: PropTypes.func.isRequired,
+  selectCategory: PropTypes.string.isRequired,
+};
 
 export default CategoryList;
