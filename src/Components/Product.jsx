@@ -11,7 +11,7 @@ class Product extends React.Component {
         <img src={thumbnail} alt={`${title} img`} />
         <p>{title}</p>
         <p>{`R$ ${price}`}</p>
-        <Link data-testid="product-detail-link" path={`/products/${title}`}>
+        <Link data-testid="product-detail-link" to={`/products/${title}`}>
           Detalhes
         </Link>
       </div>

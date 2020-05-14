@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class CategoryList extends React.Component {
   render() {
@@ -8,9 +9,10 @@ class CategoryList extends React.Component {
         <ul>
           <h1>Category List</h1>
           {categories.map(({ id, name }) => (
-            <li key={id} data-testid="category">
+            <li key={id}>
               <label htmlFor={id}>
                 <input
+                  data-testid="category"
                   type="radio"
                   id={id}
                   value={id}

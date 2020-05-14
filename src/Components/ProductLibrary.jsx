@@ -9,6 +9,7 @@ class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      changedCategory: false,
       searchText: '',
       selectCategory: '',
       products: {},
@@ -23,6 +24,10 @@ class ProductLibrary extends React.Component {
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
+  componentDidUpdate() {
+    if (this.state.changedCategory) this.findProducts();
+  }
+
   textChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
@@ -30,21 +35,20 @@ class ProductLibrary extends React.Component {
 
   categoryChange(event, name) {
     const { value } = event.target;
-    this.setState({ [name]: value });
-    this.findProducts('category');
+    this.setState({ [name]: value, changedCategory: true });
   }
 
-  findProducts(str) {
-    console.log(str);
+  findProducts() {
     const { searchText, selectCategory } = this.state;
     return api.getProductsFromCategoryAndQuery(selectCategory, searchText)
-      .then((products) => this.setState({ products }));
+      .then((products) => this.setState({ products, changedCategory: false }));
   }
 
   render() {
     const { searchText, products, categories, selectCategory } = this.state;
     return (
       <div>
+        <ProductList products={products} searchText={searchText} />
         <CategoryList
           categories={categories}
           selectCategory={selectCategory}
@@ -53,9 +57,8 @@ class ProductLibrary extends React.Component {
         <SearchBar
           searchText={searchText}
           onSearchTextChange={(event) => this.textChange(event, 'searchText')}
-          onSubmit={() => this.findProducts('searchText')}
+          onSubmit={() => this.findProducts()}
         />
-        <ProductList products={products} searchText={searchText} />
       </div>
     );
   }

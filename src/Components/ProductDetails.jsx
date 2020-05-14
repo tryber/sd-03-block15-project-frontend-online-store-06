@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function ProductDetails({ title, thumbnail, price, ...details }) {
+  console.log(title, thumbnail, price);
   return (
     <div>
       <h3 data-testid="product-detail-name">{title}</h3>
@@ -13,7 +14,7 @@ function ProductDetails({ title, thumbnail, price, ...details }) {
         {Object.entries(details).map(([feature, value]) =>
           <li key={feature}>{feature}: {value}</li>)}
       </section>
-      <Link path="/cart">Carrinho</Link>
+      <Link to="/cart">Carrinho</Link>
     </div>
   );
 }
