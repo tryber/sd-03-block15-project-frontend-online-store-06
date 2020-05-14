@@ -12,7 +12,6 @@ class Cart extends Component {
 
   componentDidMount() {
     const valor = localStorage.getItem('buyList');
-    console.log(valor);
     const memoryArr = JSON.parse(valor);
     if (memoryArr !== null) {
       this.setState({
@@ -37,7 +36,7 @@ class Cart extends Component {
     return (
       <div>
         {buyListArr.map((elem) => (
-          <div className="cart">
+          <div className="cart" key={elem.title}>
             <img src={elem.thumbnail} alt={`${elem.title} img`} />
             <p data-testid="shopping-cart-product-name">{elem.title}</p>
             <p>{`R$ ${elem.price}`}</p>
