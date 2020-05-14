@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import Rating from './Rating';
+
 const porductNotFound = () => (
   <div>
     <h4>Produto não encontrado</h4>
@@ -12,16 +14,19 @@ const porductNotFound = () => (
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { product: {}, foundOrPending: true };
+    this.state = {
+      product: {},
+      foundOrPending: true,
+    };
   }
 
   componentDidMount() {
-    const { products, match: { params } } = this.props;
-    const product = products.find((prod) => prod.id === params.id);
-    this.setProduct(product);
+    this.findProduct();
   }
 
-  setProduct(product) {
+  findProduct() {
+    const { products, match: { params } } = this.props;
+    const product = products.find((prod) => prod.id === params.id);
     if (product) return this.setState({ product, foundOrPending: true });
     return this.setState({ foundOrPending: false });
   }
@@ -44,6 +49,7 @@ class ProductDetails extends React.Component {
               <li key={feature}>{feature}: {value}</li> : null
           ))}
         </section>
+        <Rating />
       </div>
     );
   }
