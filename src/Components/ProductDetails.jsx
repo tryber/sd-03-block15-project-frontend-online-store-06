@@ -42,9 +42,7 @@ class ProductDetails extends React.Component {
   }
 }
 
-ProductDetails.defaultProps = {
-  products: [],
-};
+ProductDetails.defaultProps = { products: [] };
 
 ProductDetails.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
