@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import * as api from '../services/api';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
 import CategoryList from './CategoryList';
 import ProductDetails from './ProductDetails';
-
-import cartImage from '../images/carrinho.png';
 
 class ProductLibrary extends React.Component {
   constructor(props) {
@@ -69,13 +67,9 @@ class ProductLibrary extends React.Component {
             selectCategory={selectCategory}
           />
         </Route>
-        <Route
-          path="/products/:id"
-          render={(props) => <ProductDetails {...props} products={products.results} />}
+        <Route path="/products/:id" render={(props) =>
+          <ProductDetails {...props} products={products.results} />}
         />
-        <Link to="/cart" data-testid="shopping-cart-button">
-          <img src={cartImage} alt="cart-button" />
-        </Link>
       </div>
     );
   }
