@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+const porductNotFound = () => (
+  <div>
+    <h4>Produto não encontrado</h4>
+    <Link to="/">Página Inicial</Link>
+  </div>
+);
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { product: {}, haveBeenFound: true };
+    this.state = { product: {}, foundOrPending: true };
   }
 
   componentDidMount() {
@@ -15,13 +22,13 @@ class ProductDetails extends React.Component {
   }
 
   setProduct(product) {
-    if (product) return this.setState({ product, haveBeenFound: true });
-    return this.setState({ haveBeenFound: false });
+    if (product) return this.setState({ product, foundOrPending: true });
+    return this.setState({ foundOrPending: false });
   }
 
   render() {
-    const { product, haveBeenFound } = this.state;
-    if (haveBeenFound === false) return <Redirect to="/" />;
+    const { product, foundOrPending } = this.state;
+    if (!foundOrPending) return porductNotFound();
     const { title, thumbnail, price, ...details } = product;
     return (
       <div>
