@@ -7,6 +7,14 @@ import ProductList from './ProductList';
 import CategoryList from './CategoryList';
 import ProductDetails from './ProductDetails';
 
+const renderProductList = (products, searchText, selectCategory) => (
+  <ProductList
+    products={products}
+    searchText={searchText}
+    selectCategory={selectCategory}
+  />
+);
+
 class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
@@ -61,11 +69,7 @@ class ProductLibrary extends React.Component {
             onSearchTextChange={(event) => this.textChange(event, 'searchText')}
             onSubmit={() => this.findProducts()}
           />
-          <ProductList
-            products={products}
-            searchText={searchText}
-            selectCategory={selectCategory}
-          />
+          {renderProductList(products, searchText, selectCategory)}
         </Route>
         <Route path="/products/:id" render={(props) =>
           <ProductDetails {...props} products={products.results} />}
