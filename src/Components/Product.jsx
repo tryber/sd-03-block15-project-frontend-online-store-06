@@ -21,10 +21,10 @@ class Product extends React.Component {
 
 Product.propTypes = {
   product: PropTypes.shape({
-    title: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-  })
-}
+  }),
+};
 
 export default Product;

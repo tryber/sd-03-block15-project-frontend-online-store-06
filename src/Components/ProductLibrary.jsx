@@ -48,7 +48,6 @@ class ProductLibrary extends React.Component {
     const { searchText, products, categories, selectCategory } = this.state;
     return (
       <div>
-        <ProductList products={products} searchText={searchText} />
         <CategoryList
           categories={categories}
           selectCategory={selectCategory}
@@ -59,6 +58,7 @@ class ProductLibrary extends React.Component {
           onSearchTextChange={(event) => this.textChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
+        <ProductList products={products} searchText={searchText} />
       </div>
     );
   }
