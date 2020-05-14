@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import * as api from '../services/api';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
 import CategoryList from './CategoryList';
+
+import cartImage from '../images/carrinho.png';
 
 class ProductLibrary extends React.Component {
   constructor(props) {
@@ -34,6 +37,13 @@ class ProductLibrary extends React.Component {
   }
 
   categoryChange(event, name) {
+
+    const { value } = event.target;
+    this.setState({ [name]: value });
+    this.findProducts();
+  }
+
+  categoryChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value, changedCategory: true });
   }
@@ -59,6 +69,9 @@ class ProductLibrary extends React.Component {
           onSubmit={() => this.findProducts()}
         />
         <ProductList products={products} searchText={searchText} />
+        <Link to="/cart" data-testid="shopping-cart-button">
+          <img src={cartImage} alt="cart-button" />
+        </Link>
       </div>
     );
   }

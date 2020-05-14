@@ -12,7 +12,9 @@ function ProductDetails({ title, thumbnail, price, ...details }) {
       </figure>
       <section>
         {Object.entries(details).map(([feature, value]) =>
-          <li key={feature}>{feature}: {value}</li>)}
+          (typeof value === 'string' || typeof value === 'number') ?
+             <li key={feature}>{feature}: {value}</li> : null
+        )}
       </section>
       <Link to="/cart">Carrinho</Link>
     </div>

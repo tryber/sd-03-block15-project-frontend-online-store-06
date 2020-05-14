@@ -6,6 +6,7 @@ class Product extends React.Component {
   render() {
     const { product } = this.props;
     const { title, price, thumbnail } = product;
+    console.log(title);
     return (
       <div data-testid="product">
         <img src={thumbnail} alt={`${title} img`} />
