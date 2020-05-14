@@ -71,8 +71,9 @@ class ProductLibrary extends React.Component {
           />
           {renderProductList(products, searchText, selectCategory)}
         </Route>
-        <Route path="/products/:id" render={(props) =>
-          <ProductDetails {...props} products={products.results} />}
+        <Route
+          path="/products/:id"
+          render={(props) => <ProductDetails {...props} products={products.results} />}
         />
       </div>
     );
