@@ -24,7 +24,7 @@ Product.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default Product;
