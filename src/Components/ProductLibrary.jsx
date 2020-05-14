@@ -63,7 +63,11 @@ class ProductLibrary extends React.Component {
             onSearchTextChange={(event) => this.textChange(event, 'searchText')}
             onSubmit={() => this.findProducts()}
           />
-          <ProductList products={products} />
+          <ProductList
+            products={products}
+            searchText={searchText}
+            selectCategory={selectCategory}
+          />
         </Route>
         <Route
           path="/products/:id"
