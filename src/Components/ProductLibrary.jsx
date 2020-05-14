@@ -24,9 +24,15 @@ class ProductLibrary extends React.Component {
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
-  textOrCategoryChange(event, name) {
+  textChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
+  }
+
+  categoryChange(event, name) {
+    const { value } = event.target;
+    this.setState({ [name]: value });
+    this.findProducts();
   }
 
   findProducts() {
@@ -37,21 +43,20 @@ class ProductLibrary extends React.Component {
 
   render() {
     const { searchText, products, categories, selectCategory } = this.state;
-    console.log(searchText);
     return (
       <div>
         <CategoryList
           categories={categories}
           selectCategory={selectCategory}
-          onCategoryChange={(event) => this.textOrCategoryChange(event, 'selectCategory')}
+          onCategoryChange={(event) => this.categoryChange(event, 'selectCategory')}
         />
         <SearchBar
           searchText={searchText}
-          onSearchTextChange={(event) => this.textOrCategoryChange(event, 'searchText')}
+          onSearchTextChange={(event) => this.textChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
-        <ProductList products={products} searchText={searchText} />
-        <Link to="/cart" data-testid="shopping-cart-button" >
+        <ProductList products={products} searchText={searchText} selectCategory={selectCategory} />
+        <Link to="/cart" data-testid="shopping-cart-button">
           <img src="../images/carrinho.png" alt="cart-button" />
         </Link>
       </div>

@@ -6,24 +6,44 @@ class Cart extends Component {
     super(props);
     this.state = {
       empty: true,
-      cart: {
-        arr: [],
-        qt: 1,
-      },
+      buyListArr: [],
     };
   }
 
-  render() {
-    const { empty } = this.state;
+  componentDidMount() {
+    const valor = localStorage.getItem('buyList');
+    console.log(valor);
+    const memoryArr = JSON.parse(valor);
+    if (memoryArr !== null) {
+      this.setState({
+        buyListArr: memoryArr,
+        empty: false,
+      });
+    }
+  }
 
-    return (
-      <div className="cart">
-        {
-          empty ? <div className="Vazio">
+  render() {
+    const { empty, buyListArr } = this.state;
+    if (empty) {
+      return (
+        <div className="cart">
+          <div className="Vazio">
             <img src={box} alt="Caixa-vazia" />
-            <h3 data-testid="shopping-cart-empty-message" >Seu carrinho está vazio</h3>
-          </div> : 1
-        }
+            <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div>
+        {buyListArr.map((elem) => (
+          <div className="cart">
+            <img src={elem.thumbnail} alt={`${elem.title} img`} />
+            <p data-testid="shopping-cart-product-name">{elem.title}</p>
+            <p>{`R$ ${elem.price}`}</p>
+            <p data-testid="shopping-cart-product-quantity">{`Quantidade: ${elem.qnt}`}</p>
+          </div>
+        ))}
       </div>
     );
   }
