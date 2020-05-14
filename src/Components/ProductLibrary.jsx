@@ -37,13 +37,6 @@ class ProductLibrary extends React.Component {
   }
 
   categoryChange(event, name) {
-
-    const { value } = event.target;
-    this.setState({ [name]: value });
-    this.findProducts();
-  }
-
-  categoryChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value, changedCategory: true });
   }
