@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import * as api from '../services/api';
 import SearchBar from './SearchBar';
@@ -34,6 +35,13 @@ class ProductLibrary extends React.Component {
   }
 
   categoryChange(event, name) {
+
+    const { value } = event.target;
+    this.setState({ [name]: value });
+    this.findProducts();
+  }
+
+  categoryChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value, changedCategory: true });
   }
@@ -59,6 +67,10 @@ class ProductLibrary extends React.Component {
           onSearchTextChange={(event) => this.textChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
+        <ProductList products={products} searchText={searchText} />
+        <Link to="/cart" data-testid="shopping-cart-button">
+          <img src="../images/carrinho.png" alt="cart-button" />
+        </Link>
       </div>
     );
   }
