@@ -61,7 +61,6 @@ class ProductLibrary extends React.Component {
           <img src="../images/carrinho.png" alt="cart-button" />
         </Link>
       </div>
-
     );
   }
 }
