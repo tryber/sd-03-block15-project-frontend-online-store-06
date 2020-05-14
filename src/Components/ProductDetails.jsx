@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { product: {} };
+    this.state = { product: {}, haveBeenFound: true };
   }
 
   componentDidMount() {
@@ -14,11 +15,14 @@ class ProductDetails extends React.Component {
   }
 
   setProduct(product) {
-    this.setState({ product });
+    if (product) return this.setState({ product, haveBeenFound: true });
+    return this.setState({ haveBeenFound: false });
   }
 
   render() {
-    const { title, thumbnail, price, ...details } = this.state.product;
+    const { product, haveBeenFound } = this.state;
+    if (haveBeenFound === false) return <Redirect to="/" />;
+    const { title, thumbnail, price, ...details } = product;
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
@@ -37,6 +41,10 @@ class ProductDetails extends React.Component {
     );
   }
 }
+
+ProductDetails.defaultProps = {
+  products: [],
+};
 
 ProductDetails.propTypes = {
   products: PropTypes.arrayOf(PropTypes.shape({
