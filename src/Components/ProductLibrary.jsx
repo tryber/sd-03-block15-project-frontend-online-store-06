@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 import * as api from '../services/api';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
 import CategoryList from './CategoryList';
+import ProductDetails from './ProductDetails';
 
 import cartImage from '../images/carrinho.png';
 
@@ -61,7 +62,10 @@ class ProductLibrary extends React.Component {
           onSearchTextChange={(event) => this.textChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
-        <ProductList products={products} searchText={searchText} />
+        <Route exact path="/" render={() => <ProductList products={products} />} />
+        <Route path="/products/:id"
+          render={(props) => <ProductDetails {...props} products={products.results} />}
+        />
         <Link to="/cart" data-testid="shopping-cart-button">
           <img src={cartImage} alt="cart-button" />
         </Link>

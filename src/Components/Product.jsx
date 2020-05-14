@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 class Product extends React.Component {
   render() {
     const { product } = this.props;
-    const { title, price, thumbnail } = product;
+    const { id, title, price, thumbnail } = product;
     console.log(title);
     return (
       <div data-testid="product">
         <img src={thumbnail} alt={`${title} img`} />
         <p>{title}</p>
         <p>{`R$ ${price}`}</p>
-        <Link data-testid="product-detail-link" to={`/products/${title}`}>
+        <Link data-testid="product-detail-link" to={`/products/${id}`}>
           Detalhes
         </Link>
       </div>
@@ -22,6 +22,7 @@ class Product extends React.Component {
 
 Product.propTypes = {
   product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
