@@ -47,10 +47,10 @@ class Cart extends Component {
     this.setState({ buyListArr: newArr });
   }
 
-  emptySearch() {
+  emptySearch = () => {
     return (
       <div className="Vazio">
-        <img src={this.box} alt="Caixa-vazia" />
+        <img src={box} alt="Caixa-vazia" />
         <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
       </div>
     );
