@@ -47,15 +47,6 @@ class Cart extends Component {
     this.setState({ buyListArr: newArr });
   }
 
-  emptySearch = () => {
-    return (
-      <div className="Vazio">
-        <img src={box} alt="Caixa-vazia" />
-        <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
-      </div>
-    );
-  }
-
   buyButtonFromMap(elem) {
     return (
       <div>
@@ -84,7 +75,10 @@ class Cart extends Component {
     if (empty) {
       return (
         <div className="cart">
-          {this.emptySearch()}
+          <div className="Vazio">
+            <img src={box} alt="Caixa-vazia" />
+            <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
+          </div>
         </div>
       );
     }
