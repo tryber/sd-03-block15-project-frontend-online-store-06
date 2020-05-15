@@ -15,7 +15,6 @@ class Product extends React.Component {
   componentDidMount() {
     const memoryArr = JSON.parse(localStorage.getItem('buyList'));
     if (memoryArr !== null) {
-      console.log('teste');
       this.setState({
         buyListArr: memoryArr,
         updateList: true,
@@ -30,31 +29,28 @@ class Product extends React.Component {
 
   buyButton(x, y, z) {
     const { buyListArr, updateList } = this.state;
-    // console.log(buyListArr);
     if (updateList) {
       const check = buyListArr.findIndex((elem) => elem.title === x);
-      if (check) {
-        // const newArr = [...buyListArr,
-        //   { ...buyListArr[check], qnt: Number(buyListArr[check].qto) + 1 }];
+      if (check !== -1) {
+        console.log(check);
         const newArr = buyListArr.map((elem) => {
           if (elem.title === x) {
             return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
           }
           return elem;
         });
-        localStorage.setItem('buyList', JSON.stringify(newArr));
-        this.setState({ updateList: true });
+        this.setState({ buyListArr: newArr });
       } else {
         const obj = { title: x, price: y, thumbnail: z, qnt: 1 };
         const newArr = [...buyListArr, obj];
-        localStorage.setItem('buyList', JSON.stringify(newArr));
-        this.setState({ updateList: true });
+        this.setState({ buyListArr: newArr });
       }
     }
-    const obj = { title: x, price: y, thumbnail: z, qnt: 1 };
-    const newArr = [...buyListArr, obj];
-    localStorage.setItem('buyList', JSON.stringify(newArr));
-    this.setState({ updateList: true });
+    if (!updateList) {
+      const obj = { title: x, price: y, thumbnail: z, qnt: 1 };
+      const newArr = [...buyListArr, obj];
+      this.setState({ buyListArr: newArr, updateList: true });
+    }
   }
 
 
@@ -72,7 +68,7 @@ class Product extends React.Component {
           </Link>
         </div>
         <div>
-          <button type="button" data-testid="product-add-to-cart" onClick={this.buyButton(title, price, thumbnail)}>Adicionar ao Carrinho</button>
+          <button type="button" data-testid="product-add-to-cart" onClick={() => this.buyButton(title, price, thumbnail)}>Adicionar ao Carrinho</button>
         </div>
       </div>
     );

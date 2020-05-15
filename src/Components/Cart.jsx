@@ -12,18 +12,42 @@ class Cart extends Component {
 
   componentDidMount() {
     const valor = localStorage.getItem('buyList');
-    console.log(valor);
     const memoryArr = JSON.parse(valor);
     if (memoryArr !== null) {
       this.setState({
         buyListArr: memoryArr,
         empty: false,
       });
+    } else {
+      this.setState({ buyListArr: [], empty: true });
     }
+  }
+
+  decreaseQnt(obj) {
+    const { buyListArr } = this.state;
+    const newArr = buyListArr.map((elem) => {
+      if (elem.title === obj && elem.qnt > 1) {
+        return Object.assign(elem, { qnt: Number(elem.qnt) - 1 });
+      }
+      return elem;
+    });
+    this.setState({ buyListArr: newArr });
+  }
+
+  increaseQnt(obj) {
+    const { buyListArr } = this.state;
+    const newArr = buyListArr.map((elem) => {
+      if (elem.title === obj) {
+        return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
+      }
+      return elem;
+    });
+    this.setState({ buyListArr: newArr });
   }
 
   render() {
     const { empty, buyListArr } = this.state;
+    console.log(buyListArr);
     if (empty) {
       return (
         <div className="cart">
@@ -37,11 +61,13 @@ class Cart extends Component {
     return (
       <div>
         {buyListArr.map((elem) => (
-          <div className="cart">
+          <div className="cart" key={elem.title}>
             <img src={elem.thumbnail} alt={`${elem.title} img`} />
             <p data-testid="shopping-cart-product-name">{elem.title}</p>
             <p>{`R$ ${elem.price}`}</p>
+            <button type="button" data-testid="product-decrease-quantity" onClick={() => this.decreaseQnt(elem.title)}>-</button>
             <p data-testid="shopping-cart-product-quantity">{`Quantidade: ${elem.qnt}`}</p>
+            <button type="button" data-testid="product-increase-quantity" onClick={() => this.increaseQnt(elem.title)}>+</button>
           </div>
         ))}
       </div>
