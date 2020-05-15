@@ -23,7 +23,8 @@ class ProductDetails extends React.Component {
   componentDidMount() { this.takingProduct(); }
 
   takingProduct() {
-    const product = this.props.location.state;
+    const { location } = this.props;
+    const product = location.state;
     if (!product) return this.setState({ product: {}, foundOrPending: false });
     return this.setState({ product });
   }
@@ -37,13 +38,13 @@ class ProductDetails extends React.Component {
         <h3 data-testid="product-detail-name">{title}</h3>
         <figure>
           <img alt="#" src={thumbnail} />
-          <figcaption>{title} image</figcaption>
+          <figcaption>{`${title} image`}</figcaption>
           <p>{price}</p>
         </figure>
         <section>
           {Object.entries(details).map(([feature, value]) => (
-            typeof value === 'string' || typeof value === 'number' ?
-              <li key={feature}>{feature}: {value}</li> : null
+            typeof value === 'string' || typeof value === 'number'
+              ? <li key={feature}>{`${feature}: ${value}`}</li> : null
           ))}
         </section>
         <Rating />

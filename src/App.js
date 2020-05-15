@@ -13,7 +13,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/cart" component={Cart} />
-          <Route path="/products/:id" render={(props) => <ProductDetails {...props} />} />
+          <Route
+            path="/products/:id"
+            render={({ location }) => <ProductDetails location={location} />}
+          />
           <Route exact path="/" component={ProductLibrary} />
         </Switch>
         <Link to="/cart" data-testid="shopping-cart-button">

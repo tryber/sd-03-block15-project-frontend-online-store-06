@@ -9,6 +9,7 @@ class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      categoryChanged: false,
       searchText: '',
       selectCategory: '',
       products: {},
@@ -23,6 +24,13 @@ class ProductLibrary extends React.Component {
       .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
   }
 
+  componentDidUpdate() {
+    const { categoryChanged } = this.state;
+    if (categoryChanged) {
+      this.findProducts();
+    }
+  }
+
   textChange(event, name) {
     const { value } = event.target;
     this.setState({ [name]: value });
@@ -30,14 +38,16 @@ class ProductLibrary extends React.Component {
 
   categoryChange(event, name) {
     const { value } = event.target;
-    this.setState({ [name]: value });
-    this.findProducts();
+    this.setState({
+      [name]: value,
+      categoryChanged: true,
+    });
   }
 
   async findProducts() {
     const { searchText, selectCategory } = this.state;
     return api.getProductsFromCategoryAndQuery(selectCategory, searchText)
-      .then((products) => this.setState({ products }));
+      .then((products) => this.setState({ products, categoryChanged: false }));
   }
 
   render() {
