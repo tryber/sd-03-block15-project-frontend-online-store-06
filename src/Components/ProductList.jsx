@@ -8,13 +8,13 @@ class ProductList extends React.Component {
     super(props);
     this.state = { buyListArr: [] };
     this.buyButton = this.buyButton.bind(this);
-    this.changeState = this.changeState.bind(this);
+    this.changeStateProductList = this.changeState.bind(this);
   }
 
   componentDidMount() {
-    const memoryArr = JSON.parse(localStorage.getItem('buyList'));
-    if (memoryArr !== null) {
-      this.changeState(memoryArr);
+    const memoryArrProductList = JSON.parse(localStorage.getItem('buyList'));
+    if (memoryArrProductList !== null) {
+      this.changeStateProductList(memoryArrProductList);
     }
   }
 
@@ -23,7 +23,7 @@ class ProductList extends React.Component {
     localStorage.setItem('buyList', JSON.stringify(buyListArr));
   }
 
-  changeState(elem) {
+  changeStateProductList(elem) {
     this.setState({ buyListArr: elem });
   }
 

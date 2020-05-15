@@ -8,17 +8,17 @@ class Cart extends Component {
       empty: true,
       buyListArr: [],
     };
-    this.changeState = this.changeState.bind(this);
+    this.changeStateCart = this.changeState.bind(this);
   }
 
   componentDidMount() {
-    const memoryArr = JSON.parse(localStorage.getItem('buyList'));
-    if (memoryArr !== null) {
-      this.changeState(memoryArr);
+    const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
+    if (memoryArrCart !== null) {
+      this.changeState(memoryArrCart);
     }
   }
 
-  changeState(elem) {
+  changeStateCart(elem) {
     this.setState({
       buyListArr: elem,
       empty: false,
@@ -71,17 +71,13 @@ class Cart extends Component {
               type="button"
               data-testid="product-decrease-quantity"
               onClick={() => this.decreaseQnt(elem.title)}
-            >
-              -
-            </button>
+            >-</button>
             <p data-testid="shopping-cart-product-quantity">{`Quantidade: ${elem.qnt}`}</p>
             <button
               type="button"
               data-testid="product-increase-quantity"
               onClick={() => this.increaseQnt(elem.title)}
-            >
-              +
-            </button>
+            >+</button>
           </div>
         ))}
       </div>
