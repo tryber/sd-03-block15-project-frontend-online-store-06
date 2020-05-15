@@ -20,7 +20,13 @@ class Product extends React.Component {
           </Link>
         </div>
         <div>
-          <button type="button" data-testid="product-add-to-cart" onClick={buyButton}>Adicionar ao Carrinho</button>
+          <button
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={buyButton}
+          >
+            Adicionar ao Carrinho
+          </button>
         </div>
       </div>
     );
@@ -34,6 +40,7 @@ Product.propTypes = {
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   }).isRequired,
+  buyButton: PropTypes.func.isRequired,
 };
 
 export default Product;
