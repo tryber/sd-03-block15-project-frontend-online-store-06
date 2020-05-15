@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import box from '../images/box.png';
+import QntButton from './QntButton';
 
 class Cart extends Component {
   constructor(props) {
@@ -47,31 +48,8 @@ class Cart extends Component {
     this.setState({ buyListArr: newArr });
   }
 
-  buyButtonFromMap(elem) {
-    return (
-      <div>
-        <button
-          type="button"
-          data-testid="product-decrease-quantity"
-          onClick={() => this.decreaseQnt(elem.title)}
-        >
-          -
-        </button>
-        <p data-testid="shopping-cart-product-quantity">{`Quantidade: ${elem.qnt}`}</p>
-        <button
-          type="button"
-          data-testid="product-increase-quantity"
-          onClick={() => this.increaseQnt(elem.title)}
-        >
-          +
-        </button>
-      </div>
-    );
-  }
-
   render() {
     const { empty, buyListArr } = this.state;
-    console.log(buyListArr);
     if (empty) {
       return (
         <div className="cart">
@@ -89,7 +67,7 @@ class Cart extends Component {
             <img src={elem.thumbnail} alt={`${elem.title} img`} />
             <p data-testid="shopping-cart-product-name">{elem.title}</p>
             <p>{`R$ ${elem.price}`}</p>
-            {this.buyButtonFromMap(elem)}
+            <QntButton />
           </div>
         ))}
       </div>

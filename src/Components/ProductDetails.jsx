@@ -11,19 +11,19 @@ const porductNotFound = () => (
   </div>
 );
 
+const haveProperties = (object) => Object.keys(object).length > 0;
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    const { state: { product } } = this.props.location;
-    this.state = {
-      product: product ,
-      foundOrPending: true,
-    };
+    const { location } = this.props;
+    const { product } = location.state;
+    this.state = { product: product || {} };
   }
 
   render() {
-    const { product, foundOrPending } = this.state;
-    if (!foundOrPending) return porductNotFound();
+    const { product } = this.state;
+    if (!haveProperties(product)) return porductNotFound();
     const { title, thumbnail, price, ...details } = product;
     return (
       <div>
