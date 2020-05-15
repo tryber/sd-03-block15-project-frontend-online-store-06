@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
+import QntButton from './QntButton';
 
 const porductNotFound = () => (
   <div>
@@ -17,8 +18,29 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     const { location } = this.props;
-    const { product } = location.state;
-    this.state = { product: product || {} };
+    this.state = { product: location.state || {} };
+  }
+
+  decreaseQnt(obj) {
+    const { buyListArr } = this.state;
+    const newArr = buyListArr.map((elem) => {
+      if (elem.title === obj && elem.qnt > 1) {
+        return Object.assign(elem, { qnt: Number(elem.qnt) - 1 });
+      }
+      return elem;
+    });
+    this.setState({ buyListArr: newArr });
+  }
+
+  increaseQnt(obj) {
+    const { buyListArr } = this.state;
+    const newArr = buyListArr.map((elem) => {
+      if (elem.title === obj) {
+        return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
+      }
+      return elem;
+    });
+    this.setState({ buyListArr: newArr });
   }
 
   render() {
@@ -40,6 +62,12 @@ class ProductDetails extends React.Component {
           ))}
         </section>
         <Rating />
+        <QntButton 
+          title={title}
+          qnt={}
+          increaseQnt={this.increaseQnt}
+          decreaseQnt={this.decreaseQnt}
+        />
       </div>
     );
   }

@@ -53,28 +53,6 @@ class Rating extends React.Component {
     localStorage.setItem(name, event.target.value.toString());
   }
 
-  decreaseQnt(obj) {
-    const { buyListArr } = this.state;
-    const newArr = buyListArr.map((elem) => {
-      if (elem.title === obj && elem.qnt > 1) {
-        return Object.assign(elem, { qnt: Number(elem.qnt) - 1 });
-      }
-      return elem;
-    });
-    this.setState({ buyListArr: newArr });
-  }
-
-  increaseQnt(obj) {
-    const { buyListArr } = this.state;
-    const newArr = buyListArr.map((elem) => {
-      if (elem.title === obj) {
-        return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
-      }
-      return elem;
-    });
-    this.setState({ buyListArr: newArr });
-  }
-
   render() {
     const { starsValue, commentValue } = this.state;
     return (

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 
-
 class ProductList extends React.Component {
   constructor(props) {
     super(props);

@@ -8,7 +8,7 @@ class Cart extends Component {
     const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
     this.state = {
       buyListArr: memoryArrCart || [],
-      empty: !memoryArrCart.length,
+      empty: Boolean(memoryArrCart),
     };
     this.increaseQnt = this.increaseQnt.bind(this);
     this.decreaseQnt = this.decreaseQnt.bind(this);

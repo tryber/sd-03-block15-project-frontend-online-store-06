@@ -1,7 +1,8 @@
 import React from 'react';
 import PropType from 'prop-types';
 
-function QntButton() {
+function QntButton(props) {
+  const { title, qnt, increaseQnt, decreaseQnt } = props;
   return (
     <div>
       <button
