@@ -5,11 +5,11 @@ function CategoryList(props) {
   const { categories, onCategoryChange, selectCategory } = props;
   return (
     <div>
+      <h1>Category List</h1>
       <ul>
-        <h1>Category List</h1>
         {categories.map(({ id, name }) => (
           <li key={id}>
-            <label htmlFor={id}>
+            <label htmlFor={id}>{name}</label>
               <input
                 data-testid="category"
                 type="radio"
@@ -19,8 +19,6 @@ function CategoryList(props) {
                 checked={selectCategory === id}
                 onChange={onCategoryChange}
               />
-              {name}
-            </label>
           </li>
         ))}
       </ul>

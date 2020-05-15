@@ -21,8 +21,8 @@ class ProductDetails extends React.Component {
   }
 
   componentDidMount() { this.takingProduct(); }
-  
-  takingProduct() { this.setState({ product: this.props.location.state}); }
+
+  takingProduct() { this.setState({ product: this.props.location.state }); }
 
   render() {
     const { product, foundOrPending } = this.state;
@@ -51,14 +51,14 @@ class ProductDetails extends React.Component {
 ProductDetails.defaultProps = { products: [] };
 
 ProductDetails.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
-  }).isRequired).isRequired,
-  match: PropTypes.shape(
-    { params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired },
-  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default ProductDetails;
