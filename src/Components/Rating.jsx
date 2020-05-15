@@ -18,6 +18,7 @@ const renderStars = (value, onChange) => (
 
 const renderComment = (value, onChange) => (
   <div>
+    <label htmlFor="commentValue">Comentário</label>
     <textarea
       data-testid="product-detail-evaluation"
       row="20"
@@ -57,12 +58,11 @@ class Rating extends React.Component {
   }
 
   render() {
-    const { starsValue, commentValue } = this.props;
+    const { starsValue, commentValue } = this.state;
     return (
       <form>
         {renderStars(starsValue, this.handleRatingChanges)}
         {renderComment(commentValue, this.handleRatingChanges)}
-        <label htmlFor="commentValue">Comentário</label>
       </form>
     );
   }
