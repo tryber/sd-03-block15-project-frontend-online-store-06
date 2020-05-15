@@ -19,7 +19,7 @@ function CategoryList(props) {
                 checked={selectCategory === id}
                 onChange={onCategoryChange}
               />
-                {name}
+              {name}
             </label>
           </li>
         ))}
