@@ -8,7 +8,7 @@ class ProductList extends React.Component {
     super(props);
     this.state = { buyListArr: [] };
     this.buyButton = this.buyButton.bind(this);
-    this.changeStateProductList = this.changeState.bind(this);
+    this.changeStateProductList = this.changeStateProductList.bind(this);
   }
 
   componentDidMount() {
