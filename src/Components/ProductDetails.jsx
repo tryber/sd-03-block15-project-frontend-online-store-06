@@ -20,15 +20,13 @@ class ProductDetails extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.findProduct();
-  }
+  componentDidMount() { this.takingProduct(); }
 
-  findProduct() {
-    const { products, match: { params } } = this.props;
-    const product = products.find((prod) => prod.id === params.id);
-    if (product) return this.setState({ product, foundOrPending: true });
-    return this.setState({ foundOrPending: false });
+  takingProduct() {
+    const { location } = this.props;
+    const product = location.state;
+    if (!product) return this.setState({ product: {}, foundOrPending: false });
+    return this.setState({ product });
   }
 
   render() {
@@ -55,17 +53,15 @@ class ProductDetails extends React.Component {
   }
 }
 
-ProductDetails.defaultProps = { products: [] };
-
 ProductDetails.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    price: PropTypes.number,
-    id: PropTypes.string,
-  })),
-  match: PropTypes.shape(
-    { params: PropTypes.shape({ id: PropTypes.string.isRequired }).isRequired },
-  ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default ProductDetails;

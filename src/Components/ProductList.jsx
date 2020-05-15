@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Product from './Product';
+
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -53,13 +53,17 @@ class ProductList extends React.Component {
     if (!products.results) return <h4>Nenhum Produto foi encontrado</h4>;
     return (
       <div>
-        {products.results.map((product) => (<Product product={product} key={product.id} buyButton={() => this.buyButton(product.title, product.price, product.thumbnail)}/>))}
+        {products.results.map((product) => (
+          <Product
+            product={product}
+            key={product.id}
+            buyButton={() => this.buyButton(product.title, product.price, product.thumbnail)}
+          />
+        ))}
       </div>
     );
   }
 }
-
-ProductList.defaultProps = { product: {} };
 
 ProductList.propTypes = {
   products: PropTypes.shape({

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 import ProductLibrary from './Components/ProductLibrary';
 import Cart from './Components/Cart';
+import ProductDetails from './Components/ProductDetails';
 
 import cartImage from './images/carrinho.png';
 
@@ -12,7 +13,11 @@ function App() {
       <Router>
         <Switch>
           <Route path="/cart" component={Cart} />
-          <Route path="/" component={ProductLibrary} />
+          <Route
+            path="/products/:id"
+            render={({ location }) => <ProductDetails location={location} />}
+          />
+          <Route exact path="/" component={ProductLibrary} />
         </Switch>
         <Link to="/cart" data-testid="shopping-cart-button">
           <img src={cartImage} alt="cart-button" />
