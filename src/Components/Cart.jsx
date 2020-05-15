@@ -62,12 +62,12 @@ class Cart extends Component {
     }
     return (
       <div>
-        {buyListArr.map((elem) => (
-          <div className="cart" key={elem.title}>
-            <img src={elem.thumbnail} alt={`${elem.title} img`} />
-            <p data-testid="shopping-cart-product-name">{elem.title}</p>
-            <p>{`R$ ${elem.price}`}</p>
-            <QntButton />
+        {buyListArr.map(({ title, thumbnail, price }) => (
+          <div className="cart" key={title}>
+            <img src={thumbnail} alt={`${title} img`} />
+            <p data-testid="shopping-cart-product-name">{title}</p>
+            <p>{`R$ ${price}`}</p>
+            <QntButton title={title}/>
           </div>
         ))}
       </div>
