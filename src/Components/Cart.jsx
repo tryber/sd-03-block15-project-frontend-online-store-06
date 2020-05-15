@@ -11,8 +11,7 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    const valor = localStorage.getItem('buyList');
-    const memoryArr = JSON.parse(valor);
+    const memoryArr = JSON.parse(localStorage.getItem('buyList'));
     if (memoryArr !== null) {
       this.setState({
         buyListArr: memoryArr,

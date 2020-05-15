@@ -24,7 +24,7 @@ class ProductList extends React.Component {
 
   buyButton(x, y, z) {
     const { buyListArr } = this.state;
-    const check = buyListArr.find((elem) => elem.title === x);
+    const check = buyListArr.findI((elem) => elem.title === x);
     if (check) {
       console.log(check);
       const newArr = buyListArr.map((elem) => {
@@ -59,7 +59,7 @@ class ProductList extends React.Component {
   }
 }
 
-ProductList.defaultProps = { product: PropTypes.object };
+ProductList.defaultProps = { product: {} };
 
 ProductList.propTypes = {
   products: PropTypes.shape({
