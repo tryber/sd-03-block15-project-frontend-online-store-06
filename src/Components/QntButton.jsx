@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 
 function QntButton() {
   return (
@@ -6,7 +7,7 @@ function QntButton() {
       <button
         type="button"
         data-testid="product-decrease-quantity"
-        onClick={() => this.decreaseQnt(title)}
+        onClick={() => decreaseQnt(title)}
       >
         -
       </button>
@@ -14,12 +15,19 @@ function QntButton() {
       <button
         type="button"
         data-testid="product-increase-quantity"
-        onClick={() => this.increaseQnt(title)}
+        onClick={() => increaseQnt(title)}
       >
         +
       </button>
     </div>
   );
+}
+
+QntButton.propType = {
+  title: PropType.string.isRequired,
+  qnt: PropType.string.isRequired, // number as String
+  increaseQnt: PropType.func.isRequired,
+  decreaseQnt: PropType.func.isRequired,
 }
 
 export default QntButton;

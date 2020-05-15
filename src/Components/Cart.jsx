@@ -5,25 +5,13 @@ import QntButton from './QntButton';
 class Cart extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      empty: true,
-      buyListArr: [],
-    };
-    this.changeStateCart = this.changeStateCart.bind(this);
-  }
-
-  componentDidMount() {
     const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
-    if (memoryArrCart !== null) {
-      this.changeStateCart(memoryArrCart);
-    }
-  }
-
-  changeStateCart(elem) {
-    this.setState({
-      buyListArr: elem,
-      empty: false,
-    });
+    this.state = {
+      buyListArr: memoryArrCart || [],
+      empty: !memoryArrCart.length,
+    };
+    this.increaseQnt = this.increaseQnt.bind(this);
+    this.decreaseQnt = this.decreaseQnt.bind(this);
   }
 
   decreaseQnt(obj) {
@@ -50,8 +38,7 @@ class Cart extends Component {
 
   render() {
     const { empty, buyListArr } = this.state;
-    if (empty) {
-      return (
+    if (empty) return (
         <div className="cart">
           <div className="Vazio">
             <img src={box} alt="Caixa-vazia" />
@@ -59,15 +46,19 @@ class Cart extends Component {
           </div>
         </div>
       );
-    }
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price }) => (
+        {buyListArr.map(({ title, thumbnail, price, qnt }) => (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
             <p>{`R$ ${price}`}</p>
-            <QntButton title={title}/>
+            <QntButton
+              title={title}
+              qnt={qnt}
+              increaseQnt={this.increaseQnt}
+              decreaseQnt={this.decreaseQnt}
+            />
           </div>
         ))}
       </div>
