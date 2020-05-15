@@ -20,16 +20,9 @@ class ProductDetails extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.findProduct();
-  }
-
-  findProduct() {
-    const { products, match: { params } } = this.props;
-    const product = products.find((prod) => prod.id === params.id);
-    if (product) return this.setState({ product, foundOrPending: true });
-    return this.setState({ foundOrPending: false });
-  }
+  componentDidMount() { this.takingProduct(); }
+  
+  takingProduct() { this.setState({ product: this.props.location.state}); }
 
   render() {
     const { product, foundOrPending } = this.state;

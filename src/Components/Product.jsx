@@ -11,7 +11,10 @@ class Product extends React.Component {
         <img src={thumbnail} alt={`${title} img`} />
         <p>{title}</p>
         <p>{`R$ ${price}`}</p>
-        <Link data-testid="product-detail-link" to={`/products/${id}`}>
+        <Link
+          data-testid="product-detail-link"
+          to={{ pathname: `/products/${id}`, state: product }}
+        >
           Detalhes
         </Link>
       </div>
