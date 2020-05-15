@@ -22,7 +22,11 @@ class ProductDetails extends React.Component {
 
   componentDidMount() { this.takingProduct(); }
 
-  takingProduct() { this.setState({ product: this.props.location.state }); }
+  takingProduct() {
+    const product = this.props.location.state;
+    if (!product) return this.setState({ product: {}, foundOrPending: false });
+    return this.setState({ product });
+  }
 
   render() {
     const { product, foundOrPending } = this.state;
@@ -47,8 +51,6 @@ class ProductDetails extends React.Component {
     );
   }
 }
-
-ProductDetails.defaultProps = { products: [] };
 
 ProductDetails.propTypes = {
   location: PropTypes.shape({
