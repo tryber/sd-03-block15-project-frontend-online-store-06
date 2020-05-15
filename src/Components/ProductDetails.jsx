@@ -14,19 +14,11 @@ const porductNotFound = () => (
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
+    const { state: { product } } = this.props.location;
     this.state = {
-      product: {},
+      product: product ,
       foundOrPending: true,
     };
-  }
-
-  componentDidMount() { this.takingProduct(); }
-
-  takingProduct() {
-    const { location } = this.props;
-    const product = location.state;
-    if (!product) return this.setState({ product: {}, foundOrPending: false });
-    return this.setState({ product });
   }
 
   render() {
