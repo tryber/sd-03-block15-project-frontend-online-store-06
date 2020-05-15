@@ -14,11 +14,20 @@ const porductNotFound = () => (
 
 const haveProperties = (object) => Object.keys(object).length > 0;
 
+const takingProperty = (wanted, value, key = 'title') => {
+  const list = JSON.parse(localStorage.getItem('buyList'));
+  if (list) {
+    const product = list.find((prod) => prod[key] === value);
+    if (product) return product[wanted];
+  }
+  return 0;
+}
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    const { location } = this.props;
-    this.state = { product: location.state || {} };
+    const { location: { state } } = this.props;
+    this.state = { product: { qnt: takingProperty('qnt', state.title), ...state } || {} };
   }
 
   decreaseQnt(obj) {
@@ -44,9 +53,8 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
-    if (!haveProperties(product)) return porductNotFound();
-    const { title, thumbnail, price, ...details } = product;
+    if (!haveProperties(this.state)) return porductNotFound();
+    const { title, thumbnail, price, qnt, ...details } = this.state;
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
@@ -64,7 +72,7 @@ class ProductDetails extends React.Component {
         <Rating />
         <QntButton 
           title={title}
-          qnt={}
+          qnt={qnt}
           increaseQnt={this.increaseQnt}
           decreaseQnt={this.decreaseQnt}
         />
