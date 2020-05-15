@@ -2,33 +2,37 @@ import React from 'react';
 
 const renderStars = (value, onChange) => (
   <div>
-    <label htmlFor="rating-stars">Avaliação</label>
-    <input
-      type="number"
-      name="starsValue"
-      id="rating-stars"
-      max="5"
-      min="0"
-      step="1"
-      value={value}
-      onChange={(event) => onChange(event, 'starsValue')}
-    />
+    <label htmlFor="rating-stars">
+      Avaliação
+      <input
+        type="number"
+        name="starsValue"
+        id="rating-stars"
+        max="5"
+        min="0"
+        step="0.5"
+        value={value}
+        onChange={(event) => onChange(event, 'starsValue')}
+      />
+    </label>
   </div>
 );
 
 const renderComment = (value, onChange) => (
   <div>
-    <label htmlFor="commentValue">Comentário</label>
-    <textarea
-      data-testid="product-detail-evaluation"
-      row="20"
-      col="30"
-      id="commentValue"
-      maxLength="300"
-      name="commentValue"
-      value={value}
-      onChange={(event) => onChange(event, 'commentValue')}
-    />
+    <label htmlFor="commentValue">
+      Comentário
+      <textarea
+        data-testid="product-detail-evaluation"
+        row="20"
+        col="30"
+        id="commentValue"
+        maxLength="300"
+        name="commentValue"
+        value={value}
+        onChange={(event) => onChange(event, 'commentValue')}
+      />
+    </label>
   </div>
 );
 
