@@ -39,26 +39,40 @@ const renderComment = (value, onChange) => (
 class Rating extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      starsValue: '0',
-      commentValue: '',
-    };
-    this.handleRatingChanges = this.handleRatingChanges.bind(this);
-  }
-
-  componentDidMount() {
-    this.takeRating();
-  }
-
-  takeRating() {
     const commentValue = localStorage.getItem('commentValue');
     const starsValue = localStorage.getItem('starsValue');
-    this.setState({ commentValue, starsValue });
+    this.state = {
+      starsValue: starsValue || '0',
+      commentValue: commentValue || '',
+    };
+    this.handleRatingChanges = this.handleRatingChanges.bind(this);
   }
 
   handleRatingChanges(event, name) {
     this.setState({ [name]: event.target.value });
     localStorage.setItem(name, event.target.value.toString());
+  }
+
+  decreaseQnt(obj) {
+    const { buyListArr } = this.state;
+    const newArr = buyListArr.map((elem) => {
+      if (elem.title === obj && elem.qnt > 1) {
+        return Object.assign(elem, { qnt: Number(elem.qnt) - 1 });
+      }
+      return elem;
+    });
+    this.setState({ buyListArr: newArr });
+  }
+
+  increaseQnt(obj) {
+    const { buyListArr } = this.state;
+    const newArr = buyListArr.map((elem) => {
+      if (elem.title === obj) {
+        return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
+      }
+      return elem;
+    });
+    this.setState({ buyListArr: newArr });
   }
 
   render() {
