@@ -6,7 +6,7 @@ class Product extends React.Component {
   render() {
     const { product, buyButton } = this.props;
     const { id, title, price, thumbnail, shipping } = product;
-    const freeShipping = shipping['free_shipping'];
+    const freeShipping = shipping.free_shipping;
     return (
       <div>
         <div data-testid="product">

@@ -28,14 +28,14 @@ const selectProperties = ([feature, value]) => {
     return <li key={feature}>{`${feature}: ${value}`}</li>;
   }
   return null;
-}
+};
 
 const updateStorage = (value, title, product) => {
   const { price, thumbnail, available_quantity: aQ, shipping } = product;
-  const freeShipping = shipping['free_shipping'];
+  const freeShipping = shipping.free_shipping;
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
-  const alreadyExist = cart.some((product) => product.title === title);
+  const alreadyExist = cart.some((prod) => prod.title === title);
   if (alreadyExist) {
     newCart = cart.map((elem) => (
       elem.title === title ? Object.assign(elem, { qnt: value }) : elem
@@ -67,7 +67,7 @@ class ProductDetails extends React.Component {
     const { product } = this.state;
     if (!haveProperties(product)) return porductNotFound();
     const { title, thumbnail, price, qnt, available_quantity: aQ, shipping, ...others } = product;
-    const freeShipping = shipping['free_shipping'];
+    const freeShipping = shipping.free_shipping;
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
