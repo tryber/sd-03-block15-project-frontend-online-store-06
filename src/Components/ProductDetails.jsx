@@ -32,6 +32,7 @@ const selectProperties = ([feature, value]) => {
 
 const updateStorage = (value, title, product) => {
   const { price, thumbnail, available_quantity, shipping } = product;
+  console.log(shipping)
   const freeShipping = shipping['free_shipping'];
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
