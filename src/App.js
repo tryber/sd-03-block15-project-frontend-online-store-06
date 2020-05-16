@@ -29,10 +29,12 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route path="/cart" component={Cart} />
-            <Route path="/products/:id" render={(props) => <ProductDetails {...props} />} />
+            <Route
+              path="/products/:id"
+              render={({ location }) => <ProductDetails location={location} />}
+            />
             <Route exact path="/" component={ProductLibrary} />
           </Switch>
-          <LinkToCart unitsInCart={this.state.unitsInCart} />
         </Router>
       </div>
     );
