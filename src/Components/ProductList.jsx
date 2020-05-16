@@ -28,7 +28,8 @@ class ProductList extends React.Component {
 
   buyButton(product) {
     const { buyListArr } = this.state;
-    const { title, thumbnail, price, available_quantity } = product;
+    const { title, thumbnail, price, available_quantity, shipping } = product;
+    const { freeShipping } = shipping['free_shipping'];
     const check = buyListArr.find((elem) => elem.title === title);
     if (check) {
       const newArr = buyListArr.map((elem) => {
@@ -39,7 +40,7 @@ class ProductList extends React.Component {
       });
       this.setState({ buyListArr: newArr });
     } else {
-      const obj = { qnt: 1, title, thumbnail, price, available_quantity };
+      const obj = { qnt: 1, title, thumbnail, price, available_quantity, freeShipping };
       const newArr = [...buyListArr, obj];
       this.setState({ buyListArr: newArr });
     }
