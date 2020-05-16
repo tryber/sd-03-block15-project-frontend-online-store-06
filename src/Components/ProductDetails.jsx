@@ -48,6 +48,7 @@ class ProductDetails extends React.Component {
           ))}
         </section>
         <Rating />
+        <LinkToCart unitsInCart={this.state.unitsInCart} />
       </div>
     );
   }

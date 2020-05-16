@@ -69,6 +69,7 @@ class ProductLibrary extends React.Component {
           searchText={searchText}
           selectCategory={selectCategory}
         />
+        <LinkToCart unitsInCart={this.state.unitsInCart} />
       </div>
     );
   }
