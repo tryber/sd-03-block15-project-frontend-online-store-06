@@ -4,6 +4,19 @@ import box from '../images/box.png';
 import QntButton from './QntButton';
 
 
+function endButton() {
+  return (
+    <Link to="checkout">
+      <button
+        data-testid="checkout-products"
+        type="button"
+      >
+        Finalizar Compra
+      </button>
+    </Link>
+  );
+}
+
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -38,23 +51,6 @@ class Cart extends Component {
     this.setState({ buyListArr: newArr });
   }
 
-  endButton(button) {
-    const { empty } = this.state;
-    if (empty || !empty) {
-      return (
-        <Link to="checkout">
-          <button
-            data-testid="checkout-products"
-            type="button"
-          >
-            Finalizar Compra
-          </button>
-        </Link>
-      );
-    }
-
-  }
-
   render() {
     const { empty, buyListArr } = this.state;
     if (empty) {
@@ -83,7 +79,7 @@ class Cart extends Component {
             />
           </div>
         ))}
-        {this.endButton()}
+        {endButton()}
       </div>
     );
   }
