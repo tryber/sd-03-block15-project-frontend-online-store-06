@@ -11,16 +11,15 @@ function QntButton(props) {
         onClick={() => decreaseQnt(title, -1)}
         disabled={qnt === min}
       >
-        -
+        <span>-</span>
       </button>
       <p data-testid="shopping-cart-product-quantity">{`Quantidade: ${qnt}`}</p>
       <button
         type="button"
-        data-testid="product-detail-add-to-cart"
         data-testid="product-increase-quantity"
         onClick={() => increaseQnt(title, 1)}
       >
-        +
+        <span data-testid="product-detail-add-to-cart" >+</span>
       </button>
     </div>
   );
