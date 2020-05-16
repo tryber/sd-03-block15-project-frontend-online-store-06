@@ -10,14 +10,13 @@ import LinkToCart from './LinkToCart';
 class ProductLibrary extends React.Component {
   constructor(props) {
     super(props);
-    const unitsInCart = generalFunc.unitsInCart();
     this.state = {
       categoryChanged: false,
       searchText: '',
       selectCategory: '',
       products: {},
       categories: [],
-      unitsInCart,
+      unitsInCart:  generalFunc.unitsInCart(),
     };
     this.findProducts = this.findProducts.bind(this);
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);

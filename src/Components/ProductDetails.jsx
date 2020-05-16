@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import * as api from '../services/api';
 import * as generalFunc from '../services/generalFunc';
 import Rating from './Rating';
 import QntButton from './QntButton';

@@ -6,9 +6,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
-    this.state = {
-      buyListArr: memoryArrCart || [],
-    };
+    this.state = { buyListArr: memoryArrCart || [] };
     this.increaseQnt = this.increaseQnt.bind(this);
     this.decreaseQnt = this.decreaseQnt.bind(this);
   }
