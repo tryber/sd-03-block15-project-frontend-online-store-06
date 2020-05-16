@@ -13,14 +13,6 @@ class BuyerInfo extends React.Component {
       complement: '',
       addressNumber: '',
     };
-    this.renderNameInput = this.renderNameInput.bind(this);
-    this.renderCpfInput = this.renderCpfInput.bind(this);
-    this.renderEmailInput = this.renderEmailInput.bind(this);
-    this.renderPhoneInput = this.renderPhoneInput.bind(this);
-    this.renderCepInput = this.renderCepInput.bind(this);
-    this.renderAddressInput = this.renderAddressInput.bind(this);
-    this.renderComplementInput = this.renderComplementInput.bind(this);
-    this.renderAddressNumberInput = this.renderAddressNumberInput.bind(this);
   }
 
   updateRegister(field, newValue) {
