@@ -16,7 +16,7 @@ class ProductLibrary extends React.Component {
       selectCategory: '',
       products: {},
       categories: [],
-      unitsInCart:  generalFunc.unitsInCart(),
+      unitsInCart: generalFunc.unitsInCart(),
     };
     this.findProducts = this.findProducts.bind(this);
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
