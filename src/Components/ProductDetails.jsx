@@ -23,6 +23,15 @@ const takingProperty = (wanted, value, key = 'title') => {
   return 0;
 };
 
+const selectProperties = ([feature, value]) => {
+  if (typeof value === 'string' || typeof value === 'number') {
+    return <li key={feature}>{`${feature}: ${value}`}</li>;
+  } else if (typeof value === 'object' && feature === 'shipping') {
+    return <li key={'shipping'}>free_shipping: {value['free_shipping'] ? 'YES' : 'NO'}</li>;
+  }
+  return null;
+}
+
 const updateStorage = (value, title, price, thumbnail, available_quantity) => {
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
@@ -67,10 +76,7 @@ class ProductDetails extends React.Component {
           <p>{price}</p>
         </figure>
         <section>
-          {Object.entries(details).map(([feature, value]) => (
-            typeof value === 'string' || typeof value === 'number'
-              ? <li key={feature}>{`${feature}: ${value}`}</li> : null
-          ))}
+          {Object.entries(details).map(selectProperties)}
         </section>
         <Rating />
         <QntButton

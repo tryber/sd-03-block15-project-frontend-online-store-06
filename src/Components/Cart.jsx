@@ -51,7 +51,6 @@ class Cart extends Component {
     return (
       <div>
         {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => {
-          console.log('title', title);
           return (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
