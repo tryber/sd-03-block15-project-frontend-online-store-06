@@ -77,6 +77,7 @@ class ProductDetails extends React.Component {
           title={title}
           qnt={qnt}
           min={0}
+          max={this.state.product.available_quantity}
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />

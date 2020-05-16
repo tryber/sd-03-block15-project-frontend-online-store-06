@@ -2,7 +2,7 @@ import React from 'react';
 import PropType from 'prop-types';
 
 function QntButton(props) {
-  const { title, qnt, increaseQnt, decreaseQnt, min } = props;
+  const { title, qnt, increaseQnt, decreaseQnt, min, max } = props;
   return (
     <div>
       <button
@@ -18,6 +18,7 @@ function QntButton(props) {
         type="button"
         data-testid="product-increase-quantity"
         onClick={() => increaseQnt(title, 1)}
+        disabled={qnt >= max}
       >
         <span data-testid="product-detail-add-to-cart" >+</span>
       </button>
@@ -25,11 +26,15 @@ function QntButton(props) {
   );
 }
 
+QntButton.defaultProps = { min: 0, max: null }
+
 QntButton.propType = {
   title: PropType.string.isRequired,
   qnt: PropType.string.isRequired, // number as String
   increaseQnt: PropType.func.isRequired,
   decreaseQnt: PropType.func.isRequired,
+  min: PropType.number,
+  max: PropType.number,
 };
 
 export default QntButton;
