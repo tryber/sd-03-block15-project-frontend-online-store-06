@@ -17,12 +17,12 @@ function endButton() {
   );
 }
 const emptyCart = () => (
-    <div className="cart">
-      <div className="Vazio">
-        <img src={box} alt="Caixa-vazia" />
-        <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
-      </div>
+  <div className="cart">
+    <div className="Vazio">
+      <img src={box} alt="Caixa-vazia" />
+      <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
     </div>
+  </div>
 );
 
 class Cart extends Component {
