@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 
-
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +30,6 @@ class ProductList extends React.Component {
     const { buyListArr } = this.state;
     const check = buyListArr.find((elem) => elem.title === x);
     if (check) {
-      console.log(check);
       const newArr = buyListArr.map((elem) => {
         if (elem.title === x) {
           return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
