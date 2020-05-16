@@ -25,11 +25,14 @@ function QntButton(props) {
   );
 }
 
+QntButton.defaultProps = { min: null };
+
 QntButton.propType = {
   title: PropType.string.isRequired,
   qnt: PropType.string.isRequired, // number as String
+  min: PropType.number, // number as String
   increaseQnt: PropType.func.isRequired,
   decreaseQnt: PropType.func.isRequired,
-};
+}
 
 export default QntButton;
