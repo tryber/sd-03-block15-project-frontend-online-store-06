@@ -16,6 +16,16 @@ function endButton() {
     </Link>
   );
 }
+const emptyCart = () => {
+  return (
+    <div className="cart">
+      <div className="Vazio">
+        <img src={box} alt="Caixa-vazia" />
+        <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
+      </div>
+    </div>
+  );
+}
 
 class Cart extends Component {
   constructor(props) {
@@ -53,36 +63,25 @@ class Cart extends Component {
 
   render() {
     const { empty, buyListArr } = this.state;
-    if (empty) {
-      return (
-        <div className="cart">
-          <div className="Vazio">
-            <img src={box} alt="Caixa-vazia" />
-            <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
-          </div>
-        </div>
-      );
-    }
+    if (empty) emptyCart();
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity, freeShipping }) => {
-          return (
-            <div className="cart" key={title}>
-              <img src={thumbnail} alt={`${title} img`} />
-              <p data-testid="shopping-cart-product-name">{title}</p>
-              <p>{`R$ ${price}`}</p>
-              {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
-              <QntButton
-                title={title}
-                qnt={qnt}
-                min={1}
-                max={available_quantity}
-                increaseQnt={this.increaseQnt}
-                decreaseQnt={this.decreaseQnt}
-              />
-            </div>
-          )}
-        )}
+        {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
+          <div className="cart" key={title}>
+            <img src={thumbnail} alt={`${title} img`} />
+            <p data-testid="shopping-cart-product-name">{title}</p>
+            <p>{`R$ ${price}`}</p>
+            {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
+            <QntButton
+              title={title}
+              qnt={qnt}
+              min={1}
+              max={availableQuantity}
+              increaseQnt={this.increaseQnt}
+              decreaseQnt={this.decreaseQnt}
+            />
+          </div>
+        ))}
         {endButton()}
       </div>
     );

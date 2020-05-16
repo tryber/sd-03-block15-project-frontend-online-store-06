@@ -31,9 +31,7 @@ const selectProperties = ([feature, value]) => {
 }
 
 const updateStorage = (value, title, product) => {
-  const { price, thumbnail, available_quantity, shipping } = product;
-  console.log('UPDATESTORAGE', product);
-  console.log('shipping', product.shipping);
+  const { price, thumbnail, available_quantity: aQ, shipping } = product;
   const freeShipping = shipping['free_shipping'];
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
@@ -43,7 +41,7 @@ const updateStorage = (value, title, product) => {
       elem.title === title ? Object.assign(elem, { qnt: value }) : elem
     ));
   } else {
-    newCart = [...cart, { title,  price, thumbnail, available_quantity, freeShipping, qnt: 1 }];
+    newCart = [...cart, { qnt: 1, title, price, thumbnail, availableQuantity: aQ, freeShipping }];
   }
   localStorage.setItem('buyList', JSON.stringify(newCart));
 };
@@ -68,7 +66,7 @@ class ProductDetails extends React.Component {
   render() {
     const { product } = this.state;
     if (!haveProperties(product)) return porductNotFound();
-    const { title, thumbnail, price, qnt, available_quantity, shipping, ...details } = product;
+    const { title, thumbnail, price, qnt, available_quantity: aQ, shipping, ...others } = product;
     const freeShipping = shipping['free_shipping'];
     return (
       <div>
@@ -80,14 +78,14 @@ class ProductDetails extends React.Component {
           {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
         </figure>
         <section>
-          {Object.entries(details).map(selectProperties)}
+          {Object.entries(others).map(selectProperties)}
         </section>
         <Rating />
         <QntButton
           title={title}
           qnt={qnt}
           min={0}
-          max={available_quantity}
+          max={aQ}
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />
