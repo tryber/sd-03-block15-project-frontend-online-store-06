@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import * as api from '../services/api';
+import * as generalFunc from '../services/generalFunc';
 import Rating from './Rating';
 import QntButton from './QntButton';
 import LinkToCart from './LinkToCart';
@@ -46,11 +47,11 @@ class ProductDetails extends React.Component {
     if (state) {
       this.state = {
         product: { qnt: takingProperty('qnt', state.title), ...state },
-        unitsInCart: api.unitsInCart(),
+        unitsInCart: generalFunc.unitsInCart(),
       };
-    } else this.state = { unitsInCart: api.unitsInCart() };
+    } else this.state = { unitsInCart: generalFunc.unitsInCart() };
     this.changeQnt = this.changeQnt.bind(this);
-    this.updateLinkCart = api.updateLinkCart.bind(this);
+    this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
   }
 
   changeQnt(title, variation) {
@@ -62,7 +63,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { product } = this.state;
+    const { product, unitsInCart } = this.state;
     if (!haveProperties(product)) return porductNotFound();
     const { title, thumbnail, price, qnt, ...details } = product;
     return (
@@ -87,7 +88,7 @@ class ProductDetails extends React.Component {
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />
-        <LinkToCart unitsInCart={this.state.unitsInCart} />
+        <LinkToCart unitsInCart={unitsInCart} />
       </div>
     );
   }

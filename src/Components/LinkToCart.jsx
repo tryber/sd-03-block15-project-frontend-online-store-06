@@ -6,7 +6,7 @@ import cartImage from '../images/carrinho.png';
 function LinkToCart(props) {
   return (
     <div>
-      <div>{props.unitsInCart}</div>
+      <div data-testid="shopping-cart-size">{props.unitsInCart}</div>
       <Link to="/cart" data-testid="shopping-cart-button">
         <img src={cartImage} alt="cart-button" />
       </Link>
@@ -14,8 +14,6 @@ function LinkToCart(props) {
   );
 }
 
-LinkToCart.defaultProps = { unitsInCart: 0 };
-
-LinkToCart.propTypes = { unitsInCart: PropTypes.number };
+LinkToCart.propTypes = { unitsInCart: PropTypes.number.isRequired };
 
 export default LinkToCart;
