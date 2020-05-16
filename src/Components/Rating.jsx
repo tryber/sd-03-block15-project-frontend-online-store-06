@@ -39,21 +39,13 @@ const renderComment = (value, onChange) => (
 class Rating extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      starsValue: '0',
-      commentValue: '',
-    };
-    this.handleRatingChanges = this.handleRatingChanges.bind(this);
-  }
-
-  componentDidMount() {
-    this.takeRating();
-  }
-
-  takeRating() {
     const commentValue = localStorage.getItem('commentValue');
     const starsValue = localStorage.getItem('starsValue');
-    this.setState({ commentValue, starsValue });
+    this.state = {
+      starsValue: starsValue || '0',
+      commentValue: commentValue || '',
+    };
+    this.handleRatingChanges = this.handleRatingChanges.bind(this);
   }
 
   handleRatingChanges(event, name) {
