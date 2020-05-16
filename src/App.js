@@ -4,25 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProductLibrary from './Components/ProductLibrary';
 import Cart from './Components/Cart';
 import ProductDetails from './Components/ProductDetails';
-import LinkToCart from './Components/LinkToCart';
-
-function unitsInCart() {
-  const products = JSON.parse(localStorage.getItem('buyList'));
-  if (!products) return 0;
-  return products.reduce((total, product) => total + Number(product.qnt), 0);
-}
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { unitsInCart: unitsInCart() };
-    this.updateLinkCart = this.updateLinkCart.bind(this);
-  }
-
-  updateLinkCart(variation) { // 1 or -1
-    this.setState((state) => ({ unitsInCart: state.unitsInCart + variation }));
-  }
-
   render() {
     return (
       <div className="App">
@@ -33,7 +16,7 @@ class App extends React.Component {
               path="/products/:id"
               render={({ location }) => <ProductDetails location={location} />}
             />
-            <Route exact path="/" component={ProductLibrary} />
+            <Route exact path="/" render={() => <ProductLibrary />} />
           </Switch>
         </Router>
       </div>

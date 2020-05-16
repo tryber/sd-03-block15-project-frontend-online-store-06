@@ -42,6 +42,7 @@ class ProductList extends React.Component {
       const newArr = [...buyListArr, obj];
       this.setState({ buyListArr: newArr });
     }
+    this.props.updateLinkCart(1);
   }
 
   render() {

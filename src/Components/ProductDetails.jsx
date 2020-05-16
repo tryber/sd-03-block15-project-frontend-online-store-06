@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import * as api from '../services/api';
 import Rating from './Rating';
 import QntButton from './QntButton';
+import LinkToCart from './LinkToCart';
 
 const porductNotFound = () => (
   <div>
@@ -42,15 +44,20 @@ class ProductDetails extends React.Component {
     super(props);
     const { location: { state } } = this.props;
     if (state) {
-      this.state = { product: { qnt: takingProperty('qnt', state.title), ...state } };
-    } else this.state = {};
+      this.state = {
+        product: { qnt: takingProperty('qnt', state.title), ...state },
+        unitsInCart: api.unitsInCart(),
+      };
+    } else this.state = { unitsInCart: api.unitsInCart() };
     this.changeQnt = this.changeQnt.bind(this);
+    this.updateLinkCart = api.updateLinkCart.bind(this);
   }
 
   changeQnt(title, variation) {
     const { qnt, price, thumbnail, ...product } = this.state.product;
     const newQnt = qnt + variation;
     updateStorage(newQnt, title, price, thumbnail);
+    this.updateLinkCart(variation);
     this.setState({ product: { ...product, price, thumbnail, qnt: newQnt } });
   }
 
@@ -73,7 +80,6 @@ class ProductDetails extends React.Component {
           ))}
         </section>
         <Rating />
-        <LinkToCart unitsInCart={this.state.unitsInCart} />
         <QntButton
           title={title}
           qnt={qnt}
@@ -81,6 +87,7 @@ class ProductDetails extends React.Component {
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />
+        <LinkToCart unitsInCart={this.state.unitsInCart} />
       </div>
     );
   }
