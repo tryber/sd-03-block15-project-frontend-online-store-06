@@ -30,7 +30,7 @@ class BuyerInfo extends React.Component {
   renderNameInput() {
     const { fullname } = this.state;
     return (
-      <div >
+      <div>
         <label htmlFor="fullname">
           <input
             data-testid="checkout-fullname"
