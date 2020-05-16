@@ -5,13 +5,13 @@ class BuyerInfo extends React.Component {
     super(props);
     this.state = {
       fullname: '',
-      cpf: null,
+      cpf: '',
       email: '',
-      phone: null,
-      cep: null,
-      address: null,
+      phone: '',
+      cep: '',
+      address: '',
       complement: '',
-      addressNumber: null,
+      addressNumber: '',
     };
     this.renderNameInput = this.renderNameInput.bind(this);
     this.renderCpfInput = this.renderCpfInput.bind(this);
@@ -50,11 +50,12 @@ class BuyerInfo extends React.Component {
     const { cpf } = this.state;
     return (
       <div>
-        <label htmlFor="cpf" data-testid="checkout-cpf">
+        <label htmlFor="cpf">
           <input
+            data-testid="checkout-cpf"
             placeholder="CPF"
             id="cpf"
-            type="number"
+            type="text"
             value={cpf}
             onChange={(event) => this.updateRegister('cpf', event.target.value)}
             required
@@ -68,8 +69,9 @@ class BuyerInfo extends React.Component {
     const { email } = this.state;
     return (
       <div>
-        <label htmlFor="email" data-testid="checkout-email">
+        <label htmlFor="email">
           <input
+            data-testid="checkout-email"
             placeholder="Email"
             id="email"
             type="text"
@@ -86,11 +88,12 @@ class BuyerInfo extends React.Component {
     const { phone } = this.state;
     return (
       <div>
-        <label htmlFor="phone" data-testid="checkout-phone">
+        <label htmlFor="phone">
           <input
+            data-testid="checkout-phone"
             placeholder="Telefone"
             id="email"
-            type="number"
+            type="text"
             value={phone}
             onChange={(event) => this.updateRegister('phone', event.target.value)}
             required
@@ -104,11 +107,12 @@ class BuyerInfo extends React.Component {
     const { cep } = this.state;
     return (
       <div>
-        <label htmlFor="cep" data-testid="checkout-cep">
+        <label htmlFor="cep">
           <input
+            data-testid="checkout-cep"
             placeholder="CEP"
             id="cep"
-            type="number"
+            type="text"
             value={cep}
             onChange={(event) => this.updateRegister('cep', event.target.value)}
             required
@@ -122,11 +126,12 @@ class BuyerInfo extends React.Component {
     const { address } = this.state;
     return (
       <div>
-        <label htmlFor="address" data-testid="checkout-address">
+        <label htmlFor="address">
           <input
+            data-testid="checkout-address"
             placeholder="Endereço"
             id="address"
-            type="number"
+            type="text"
             value={address}
             onChange={(event) => this.updateRegister('address', event.target.value)}
             required
@@ -162,7 +167,7 @@ class BuyerInfo extends React.Component {
           <input
             placeholder="Número"
             id="addressNumber"
-            type="number"
+            type="text"
             value={addressNumber}
             onChange={(event) => this.updateRegister('addressNumber', event.target.value)}
             required
@@ -175,14 +180,14 @@ class BuyerInfo extends React.Component {
   render() {
     return (
       <div>
-        {this.renderNameInput}
-        {this.renderCpfInput}
-        {this.renderEmailInput}
-        {this.renderPhoneInput}
-        {this.renderCpfInput}
-        {this.renderAddressInput}
-        {this.renderComplementInput}
-        {this.renderAddressNumberInput}
+        {this.renderNameInput()}
+        {this.renderCpfInput()}
+        {this.renderEmailInput()}
+        {this.renderPhoneInput()}
+        {this.renderCepInput()}
+        {this.renderAddressInput()}
+        {this.renderComplementInput()}
+        {this.renderAddressNumberInput()}
       </div>
     );
   }
