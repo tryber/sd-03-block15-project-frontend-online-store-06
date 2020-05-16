@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 class Product extends React.Component {
   render() {
     const { product, buyButton } = this.props;
-    const { id, title, price, thumbnail } = product;
+    const { id, title, price, thumbnail, shipping } = product;
+    const freeShipping = shipping['free_shipping'];
     return (
       <div>
         <div data-testid="product">
           <img src={thumbnail} alt={`${title} img`} />
           <p>{title}</p>
           <p>{`R$ ${price}`}</p>
+          {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
           <Link
             data-testid="product-detail-link"
             to={{ pathname: `/products/${id}`, state: product }}

@@ -26,12 +26,6 @@ const takingProperty = (wanted, value, key = 'title') => {
 const selectProperties = ([feature, value]) => {
   if (typeof value === 'string' || typeof value === 'number') {
     return <li key={feature}>{`${feature}: ${value}`}</li>;
-  } else if (typeof value === 'object' && feature === 'shipping') {
-    return (
-      <li key={'shipping'} data-testid="free-shipping">
-        free_shipping: {value['free_shipping'] ? 'YES' : 'NO'}
-      </li>
-    );
   }
   return null;
 }
@@ -72,14 +66,16 @@ class ProductDetails extends React.Component {
   render() {
     const { product } = this.state;
     if (!haveProperties(product)) return porductNotFound();
-    const { title, thumbnail, price, qnt, available_quantity, ...details } = product;
+    const { title, thumbnail, price, qnt, available_quantity, shipping, ...details } = product;
+    const freeShipping = shipping['free_shipping'];
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
         <figure>
           <img alt="#" src={thumbnail} />
           <figcaption>{`${title} image`}</figcaption>
-          <p>{price}</p>
+          <p>Price: {price}</p>
+          {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
         </figure>
         <section>
           {Object.entries(details).map(selectProperties)}

@@ -29,7 +29,7 @@ class ProductList extends React.Component {
   buyButton(product) {
     const { buyListArr } = this.state;
     const { title, thumbnail, price, available_quantity, shipping } = product;
-    const { freeShipping } = shipping['free_shipping'];
+    const freeShipping = shipping['free_shipping'];
     const check = buyListArr.find((elem) => elem.title === title);
     if (check) {
       const newArr = buyListArr.map((elem) => {
