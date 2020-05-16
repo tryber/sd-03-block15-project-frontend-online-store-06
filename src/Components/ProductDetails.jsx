@@ -15,46 +15,48 @@ const porductNotFound = () => (
 const haveProperties = (object) => Object.keys(object).length > 0;
 
 const takingProperty = (wanted, value, key = 'title') => {
-  const list = JSON.parse(localStorage.getItem('buyList'));
-  if (list) {
-    const product = list.find((prod) => prod[key] === value);
-    if (product) return product[wanted];
+  const list = JSON.parse(localStorage.getItem('buyList')) || [];
+  const product = list.find((prod) => prod[key] === value);
+  if (product) {
+    return product[wanted];
   }
   return 0;
+}
+
+const updateStorage = (value, title, price, thumbnail) => {
+  let newCart = [];
+  const cart = JSON.parse(localStorage.getItem('buyList')) || [];
+  const alreadyExist = cart.some((product) => product.title === title)
+  if (alreadyExist) {
+    newCart = cart.map((elem) =>
+      elem.title === title ? Object.assign(elem, { qnt: value }) : elem);
+  } else {
+    newCart = [...cart, { title, price, thumbnail, qnt: 1 }];
+  }
+  localStorage.setItem('buyList', JSON.stringify(newCart));
 }
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     const { location: { state } } = this.props;
-    this.state = { product: { qnt: takingProperty('qnt', state.title), ...state } || {} };
+    if (state) {
+      this.state = { product: { qnt: takingProperty('qnt', state.title), ...state } };
+    } else this.state = {};
+    this.changeQnt = this.changeQnt.bind(this);
   }
 
-  decreaseQnt(obj) {
-    const { buyListArr } = this.state;
-    const newArr = buyListArr.map((elem) => {
-      if (elem.title === obj && elem.qnt > 1) {
-        return Object.assign(elem, { qnt: Number(elem.qnt) - 1 });
-      }
-      return elem;
-    });
-    this.setState({ buyListArr: newArr });
-  }
-
-  increaseQnt(obj) {
-    const { buyListArr } = this.state;
-    const newArr = buyListArr.map((elem) => {
-      if (elem.title === obj) {
-        return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
-      }
-      return elem;
-    });
-    this.setState({ buyListArr: newArr });
+  changeQnt(title, variation) {
+    const { qnt, price, thumbnail, ...product} = this.state.product;
+    const newQnt = qnt + variation;
+    updateStorage(newQnt, title, price, thumbnail);
+    this.setState({ product: {...product, price, thumbnail, qnt: newQnt} });
   }
 
   render() {
-    if (!haveProperties(this.state)) return porductNotFound();
-    const { title, thumbnail, price, qnt, ...details } = this.state;
+    const { product } = this.state;
+    if (!haveProperties(product)) return porductNotFound();
+    const { title, thumbnail, price, qnt, ...details } = product;
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
@@ -73,8 +75,9 @@ class ProductDetails extends React.Component {
         <QntButton 
           title={title}
           qnt={qnt}
-          increaseQnt={this.increaseQnt}
-          decreaseQnt={this.decreaseQnt}
+          min={0}
+          increaseQnt={this.changeQnt}
+          decreaseQnt={this.changeQnt}
         />
       </div>
     );
