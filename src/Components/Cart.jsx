@@ -38,7 +38,8 @@ class Cart extends Component {
 
   render() {
     const { empty, buyListArr } = this.state;
-    if (empty) return (
+    if (empty) {
+      return (
         <div className="cart">
           <div className="Vazio">
             <img src={box} alt="Caixa-vazia" />
@@ -46,6 +47,7 @@ class Cart extends Component {
           </div>
         </div>
       );
+    }
     return (
       <div>
         {buyListArr.map(({ title, thumbnail, price, qnt }) => (

@@ -21,20 +21,21 @@ const takingProperty = (wanted, value, key = 'title') => {
     return product[wanted];
   }
   return 0;
-}
+};
 
 const updateStorage = (value, title, price, thumbnail) => {
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
-  const alreadyExist = cart.some((product) => product.title === title)
+  const alreadyExist = cart.some((product) => product.title === title);
   if (alreadyExist) {
-    newCart = cart.map((elem) =>
-      elem.title === title ? Object.assign(elem, { qnt: value }) : elem);
+    newCart = cart.map((elem) => {
+      return elem.title === title ? Object.assign(elem, { qnt: value }) : elem
+    });
   } else {
     newCart = [...cart, { title, price, thumbnail, qnt: 1 }];
   }
   localStorage.setItem('buyList', JSON.stringify(newCart));
-}
+};
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -47,10 +48,10 @@ class ProductDetails extends React.Component {
   }
 
   changeQnt(title, variation) {
-    const { qnt, price, thumbnail, ...product} = this.state.product;
+    const { qnt, price, thumbnail, ...product } = this.state.product;
     const newQnt = qnt + variation;
     updateStorage(newQnt, title, price, thumbnail);
-    this.setState({ product: {...product, price, thumbnail, qnt: newQnt} });
+    this.setState({ product: { ...product, price, thumbnail, qnt: newQnt } });
   }
 
   render() {
@@ -72,7 +73,7 @@ class ProductDetails extends React.Component {
           ))}
         </section>
         <Rating />
-        <QntButton 
+        <QntButton
           title={title}
           qnt={qnt}
           min={0}

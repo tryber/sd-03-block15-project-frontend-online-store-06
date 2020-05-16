@@ -30,6 +30,6 @@ QntButton.propType = {
   qnt: PropType.string.isRequired, // number as String
   increaseQnt: PropType.func.isRequired,
   decreaseQnt: PropType.func.isRequired,
-}
+};
 
 export default QntButton;
