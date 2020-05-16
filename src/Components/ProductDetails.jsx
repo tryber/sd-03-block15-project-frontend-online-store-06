@@ -28,9 +28,9 @@ const updateStorage = (value, title, price, thumbnail) => {
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
   const alreadyExist = cart.some((product) => product.title === title);
   if (alreadyExist) {
-    newCart = cart.map((elem) => {
-      return elem.title === title ? Object.assign(elem, { qnt: value }) : elem
-    });
+    newCart = cart.map((elem) => (
+      elem.title === title ? Object.assign(elem, { qnt: value }) : elem
+    ));
   } else {
     newCart = [...cart, { title, price, thumbnail, qnt: 1 }];
   }
