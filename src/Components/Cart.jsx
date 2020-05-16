@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import box from '../images/box.png';
+
 
 class Cart extends Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class Cart extends Component {
       buyListArr: [],
     };
     this.changeStateCart = this.changeStateCart.bind(this);
+    this.endButton = this.endButton.bind(this);
   }
 
   componentDidMount() {
@@ -69,6 +72,23 @@ class Cart extends Component {
     );
   }
 
+  endButton(button) {
+    const { empty } = this.state;
+    if (empty || !empty) {
+      return (
+        <Link to="checkout">
+          <button
+            data-testid="checkout-products"
+            type="button"
+          >
+            Finalizar Compra
+          </button>
+        </Link>
+      );
+    }
+
+  }
+
   render() {
     const { empty, buyListArr } = this.state;
     console.log(buyListArr);
@@ -92,6 +112,7 @@ class Cart extends Component {
             {this.buyButtonFromMap(elem)}
           </div>
         ))}
+        {this.endButton('button')}
       </div>
     );
   }
