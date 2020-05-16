@@ -26,7 +26,7 @@ function QntButton(props) {
   );
 }
 
-QntButton.defaultProps = { min: 0, max: null }
+QntButton.defaultProps = { min: 0, max: Infinity }
 
 QntButton.propType = {
   title: PropType.string.isRequired,

@@ -23,7 +23,7 @@ const takingProperty = (wanted, value, key = 'title') => {
   return 0;
 };
 
-const updateStorage = (value, title, price, thumbnail) => {
+const updateStorage = (value, title, price, thumbnail, available_quantity) => {
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
   const alreadyExist = cart.some((product) => product.title === title);
@@ -32,7 +32,7 @@ const updateStorage = (value, title, price, thumbnail) => {
       elem.title === title ? Object.assign(elem, { qnt: value }) : elem
     ));
   } else {
-    newCart = [...cart, { title, price, thumbnail, qnt: 1 }];
+    newCart = [...cart, { title, price, thumbnail, available_quantity, qnt: 1 }];
   }
   localStorage.setItem('buyList', JSON.stringify(newCart));
 };
@@ -48,9 +48,9 @@ class ProductDetails extends React.Component {
   }
 
   changeQnt(title, variation) {
-    const { qnt, price, thumbnail, ...product } = this.state.product;
+    const { qnt, price, thumbnail, available_quantity ,...product } = this.state.product;
     const newQnt = qnt + variation;
-    updateStorage(newQnt, title, price, thumbnail);
+    updateStorage(newQnt, title, price, thumbnail, available_quantity);
     this.setState({ product: { ...product, price, thumbnail, qnt: newQnt } });
   }
 
