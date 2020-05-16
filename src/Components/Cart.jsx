@@ -50,12 +50,13 @@ class Cart extends Component {
     }
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => {
+        {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity, freeShipping }) => {
           return (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
             <p>{`R$ ${price}`}</p>
+            <p>free_shipping: {freeShipping}</p>
             <QntButton
               title={title}
               qnt={qnt}

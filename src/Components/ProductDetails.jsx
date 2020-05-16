@@ -72,7 +72,7 @@ class ProductDetails extends React.Component {
   render() {
     const { product } = this.state;
     if (!haveProperties(product)) return porductNotFound();
-    const { title, thumbnail, price, qnt, ...details } = product;
+    const { title, thumbnail, price, qnt, available_quantity, ...details } = product;
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
@@ -89,7 +89,7 @@ class ProductDetails extends React.Component {
           title={title}
           qnt={qnt}
           min={0}
-          max={this.state.product.available_quantity}
+          max={available_quantity}
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />
