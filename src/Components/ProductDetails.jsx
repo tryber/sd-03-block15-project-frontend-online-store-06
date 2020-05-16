@@ -32,7 +32,8 @@ const selectProperties = ([feature, value]) => {
 
 const updateStorage = (value, title, product) => {
   const { price, thumbnail, available_quantity, shipping } = product;
-  console.log(shipping)
+  console.log('UPDATESTORAGE', product);
+  console.log('shipping', product.shipping);
   const freeShipping = shipping['free_shipping'];
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
@@ -60,7 +61,7 @@ class ProductDetails extends React.Component {
   changeQnt(title, variation) {
     const { qnt, ...product } = this.state.product;
     const newQnt = qnt + variation;
-    updateStorage(newQnt, title, { product });
+    updateStorage(newQnt, title, product);
     this.setState({ product: { ...product, qnt: newQnt } });
   }
 
