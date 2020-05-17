@@ -25,7 +25,7 @@ const takingProperty = (wanted, value, key = 'title') => {
   return 0;
 };
 
-const updateStorage = (value, title, price, thumbnail, available_quantity) => {
+const updateStorage = (value, title, price, thumbnail, aQ) => {
   let newCart = [];
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
   const alreadyExist = cart.some((product) => product.title === title);
@@ -34,7 +34,7 @@ const updateStorage = (value, title, price, thumbnail, available_quantity) => {
       elem.title === title ? Object.assign(elem, { qnt: value }) : elem
     ));
   } else {
-    newCart = [...cart, { title, price, thumbnail, available_quantity, qnt: 1 }];
+    newCart = [...cart, { title, price, thumbnail, aQ, qnt: 1 }];
   }
   localStorage.setItem('buyList', JSON.stringify(newCart));
 };
