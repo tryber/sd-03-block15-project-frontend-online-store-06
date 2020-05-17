@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import box from '../images/box.png';
 import QntButton from './QntButton';
+
+
+function endButton() {
+  return (
+    <Link to="checkout">
+      <button
+        data-testid="checkout-products"
+        type="button"
+      >
+        Finalizar Compra
+      </button>
+    </Link>
+  );
+}
 
 class Cart extends Component {
   constructor(props) {
@@ -61,6 +76,7 @@ class Cart extends Component {
             />
           </div>
         ))}
+        {endButton()}
       </div>
     );
   }
