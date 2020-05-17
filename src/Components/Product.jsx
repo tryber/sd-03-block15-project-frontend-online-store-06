@@ -2,13 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+function teste(buyListArr, string) {
+  const verify = buyListArr.find((elem) => elem.title === string);
+  if (verify) return 'In-cart';
+  return 'Not-in-cart';
+}
+
 class Product extends React.Component {
   render() {
-    const { product, buyButton } = this.props;
+    const { product, buyButton, buyListArr } = this.props;
     const { id, title, price, thumbnail } = product;
     return (
       <div>
-        <div data-testid="product">
+        <div data-testid="product" className={teste(buyListArr, title)}>
           <img src={thumbnail} alt={`${title} img`} />
           <p>{title}</p>
           <p>{`R$ ${price}`}</p>

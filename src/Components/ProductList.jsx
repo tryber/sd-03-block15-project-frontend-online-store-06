@@ -47,6 +47,7 @@ class ProductList extends React.Component {
   }
 
   render() {
+    const { buyListArr } = this.state;
     const { products, searchText, selectCategory } = this.props;
     if (searchText === '' && selectCategory === '') {
       return (
@@ -55,13 +56,14 @@ class ProductList extends React.Component {
         </h4>
       );
     }
-    if (!products.results) return <h4>Nenhum Produto foi encontrado</h4>;
+    if (!products) return <h4>Nenhum Produto foi encontrado</h4>;
     return (
       <div>
-        {products.results.map((product) => (
+        {products.map((product) => (
           <Product
             product={product}
             key={product.id}
+            buyListArr={buyListArr}
             buyButton={() => this.buyButton(product.title, product.price, product.thumbnail)}
           />
         ))}
@@ -71,13 +73,11 @@ class ProductList extends React.Component {
 }
 
 ProductList.propTypes = {
-  products: PropTypes.shape({
-    results: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      thumbnail: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-    })),
-  }).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 export default ProductList;
