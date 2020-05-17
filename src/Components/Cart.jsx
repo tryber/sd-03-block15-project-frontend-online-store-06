@@ -58,7 +58,7 @@ class Cart extends Component {
 
   render() {
     const { buyListArr } = this.state;
-    if (buyListArr.length === 0) emptyCart();
+    if (buyListArr.length === 0) return emptyCart();
     return (
       <div>
         {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity }) => (
