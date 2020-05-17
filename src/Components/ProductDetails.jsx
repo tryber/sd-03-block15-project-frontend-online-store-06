@@ -48,7 +48,7 @@ class ProductDetails extends React.Component {
   }
 
   changeQnt(title, variation) {
-    const { qnt, price, thumbnail, available_quantity ,...product } = this.state.product;
+    const { qnt, price, thumbnail, available_quantity, ...product } = this.state.product;
     const newQnt = qnt + variation;
     updateStorage(newQnt, title, price, thumbnail, available_quantity);
     this.setState({ product: { ...product, price, thumbnail, qnt: newQnt } });
