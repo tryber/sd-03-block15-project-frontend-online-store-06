@@ -61,7 +61,7 @@ class Cart extends Component {
     if (buyListArr.length === 0) emptyCart();
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => (
+        {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity }) => (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
@@ -70,7 +70,7 @@ class Cart extends Component {
               title={title}
               qnt={qnt}
               min={1}
-              max={available_quantity}
+              max={availableQuantity}
               increaseQnt={this.increaseQnt}
               decreaseQnt={this.decreaseQnt}
             />
