@@ -1,9 +1,11 @@
 import React from 'react';
 
 import * as api from '../services/api';
+import * as generalFunc from '../services/generalFunc';
 import SearchBar from './SearchBar';
 import ProductList from './ProductList';
 import CategoryList from './CategoryList';
+import LinkToCart from './LinkToCart';
 
 class ProductLibrary extends React.Component {
   constructor(props) {
@@ -16,8 +18,11 @@ class ProductLibrary extends React.Component {
       categories: [],
       order: '',
       oldOrder: {},
+      unitsInCart: generalFunc.unitsInCart(),
+
     };
     this.findProducts = this.findProducts.bind(this);
+    this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
   }
 
   componentDidMount() {
@@ -99,8 +104,7 @@ class ProductLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, products, categories, selectCategory } = this.state;
-    console.log(products);
+    const { searchText, products, categories, selectCategory, unitsInCart } = this.state;
     return (
       <div>
         <CategoryList
@@ -118,7 +122,9 @@ class ProductLibrary extends React.Component {
           products={products}
           searchText={searchText}
           selectCategory={selectCategory}
+          updateLinkCart={this.updateLinkCart}
         />
+        <LinkToCart unitsInCart={unitsInCart} />
       </div>
     );
   }

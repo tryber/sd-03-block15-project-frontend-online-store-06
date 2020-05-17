@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import box from '../images/box.png';
+import QntButton from './QntButton';
+
+
+function endButton() {
+  return (
+    <Link to="checkout">
+      <button
+        data-testid="checkout-products"
+        type="button"
+      >
+        Finalizar Compra
+      </button>
+    </Link>
+  );
+}
+const emptyCart = () => (
+  <div className="cart">
+    <div className="Vazio">
+      <img src={box} alt="Caixa-vazia" />
+      <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
+    </div>
+  </div>
+);
 
 class Cart extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      empty: true,
-      buyListArr: [],
-    };
-    this.changeStateCart = this.changeStateCart.bind(this);
-  }
-
-  componentDidMount() {
     const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
-    if (memoryArrCart !== null) {
-      this.changeStateCart(memoryArrCart);
-    }
-  }
-
-  changeStateCart(elem) {
-    this.setState({
-      buyListArr: elem,
-      empty: false,
-    });
+    this.state = { buyListArr: memoryArrCart || [] };
+    this.increaseQnt = this.increaseQnt.bind(this);
+    this.decreaseQnt = this.decreaseQnt.bind(this);
   }
 
   decreaseQnt(obj) {
@@ -47,51 +56,28 @@ class Cart extends Component {
     this.setState({ buyListArr: newArr });
   }
 
-  buyButtonFromMap(elem) {
-    return (
-      <div>
-        <button
-          type="button"
-          data-testid="product-decrease-quantity"
-          onClick={() => this.decreaseQnt(elem.title)}
-        >
-          -
-        </button>
-        <p data-testid="shopping-cart-product-quantity">{`Quantidade: ${elem.qnt}`}</p>
-        <button
-          type="button"
-          data-testid="product-increase-quantity"
-          onClick={() => this.increaseQnt(elem.title)}
-        >
-          +
-        </button>
-      </div>
-    );
-  }
-
   render() {
-    const { empty, buyListArr } = this.state;
-    console.log(buyListArr);
-    if (empty) {
-      return (
-        <div className="cart">
-          <div className="Vazio">
-            <img src={box} alt="Caixa-vazia" />
-            <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
-          </div>
-        </div>
-      );
-    }
+    const { buyListArr } = this.state;
+    if (buyListArr.length === 0) return emptyCart();
     return (
       <div>
-        {buyListArr.map((elem) => (
-          <div className="cart" key={elem.title}>
-            <img src={elem.thumbnail} alt={`${elem.title} img`} />
-            <p data-testid="shopping-cart-product-name">{elem.title}</p>
-            <p>{`R$ ${elem.price}`}</p>
-            {this.buyButtonFromMap(elem)}
+        {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
+          <div className="cart" key={title}>
+            <img src={thumbnail} alt={`${title} img`} />
+            <p data-testid="shopping-cart-product-name">{title}</p>
+            <p>{`R$ ${price}`}</p>
+            {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
+            <QntButton
+              title={title}
+              qnt={qnt}
+              min={1}
+              max={availableQuantity}
+              increaseQnt={this.increaseQnt}
+              decreaseQnt={this.decreaseQnt}
+            />
           </div>
         ))}
+        {endButton()}
       </div>
     );
   }

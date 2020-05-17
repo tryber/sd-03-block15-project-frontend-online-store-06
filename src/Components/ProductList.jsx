@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
 
-
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { buyListArr: [] };
     this.buyButton = this.buyButton.bind(this);
-    this.changeStateProductList = this.changeStateProductList.bind(this);
   }
 
   componentDidMount() {
@@ -27,21 +25,24 @@ class ProductList extends React.Component {
     this.setState({ buyListArr: elem });
   }
 
-  buyButton(x, y, z) {
+  buyButton(product) {
     const { buyListArr } = this.state;
-    const check = buyListArr.find((elem) => elem.title === x);
+    const { title, thumbnail, price, available_quantity: aQ, shipping } = product;
+    const freeShipping = shipping.free_shipping;
+    const check = buyListArr.find((elem) => elem.title === title);
     if (check) {
-      console.log(check);
       const newArr = buyListArr.map((elem) => {
-        if (elem.title === x) {
+        if (elem.title === title) {
           return Object.assign(elem, { qnt: Number(elem.qnt) + 1 });
         }
         return elem;
       });
       this.setState({ buyListArr: newArr });
+      this.props.updateLinkCart(1);
     } else {
-      const obj = { title: x, price: y, thumbnail: z, qnt: 1 };
+      const obj = { qnt: 1, title, thumbnail, price, availableQuantity: aQ, freeShipping };
       const newArr = [...buyListArr, obj];
+      this.props.updateLinkCart(1);
       this.setState({ buyListArr: newArr });
     }
   }
@@ -64,7 +65,7 @@ class ProductList extends React.Component {
             product={product}
             key={product.id}
             buyListArr={buyListArr}
-            buyButton={() => this.buyButton(product.title, product.price, product.thumbnail)}
+            buyButton={() => this.buyButton(product)}
           />
         ))}
       </div>
@@ -78,6 +79,7 @@ ProductList.propTypes = {
     thumbnail: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
   })).isRequired,
+  updateLinkCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
