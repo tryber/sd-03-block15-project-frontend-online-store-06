@@ -31,6 +31,7 @@ QntButton.defaultProps = { min: 0, max: Infinity };
 QntButton.propType = {
   title: PropType.string.isRequired,
   qnt: PropType.string.isRequired, // number as String
+  min: PropType.number, // number as String
   increaseQnt: PropType.func.isRequired,
   decreaseQnt: PropType.func.isRequired,
   min: PropType.number,

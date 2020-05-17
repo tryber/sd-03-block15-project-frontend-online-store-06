@@ -29,10 +29,7 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
-    this.state = {
-      buyListArr: memoryArrCart || [],
-      empty: !memoryArrCart,
-    };
+    this.state = { buyListArr: memoryArrCart || [] };
     this.increaseQnt = this.increaseQnt.bind(this);
     this.decreaseQnt = this.decreaseQnt.bind(this);
   }
@@ -60,8 +57,8 @@ class Cart extends Component {
   }
 
   render() {
-    const { empty, buyListArr } = this.state;
-    if (empty) emptyCart();
+    const { buyListArr } = this.state;
+    if (buyListArr.length === 0) emptyCart();
     return (
       <div>
         {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => (

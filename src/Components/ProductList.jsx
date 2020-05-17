@@ -7,7 +7,6 @@ class ProductList extends React.Component {
     super(props);
     this.state = { buyListArr: [] };
     this.buyButton = this.buyButton.bind(this);
-    this.changeStateProductList = this.changeStateProductList.bind(this);
   }
 
   componentDidMount() {
@@ -38,9 +37,11 @@ class ProductList extends React.Component {
         return elem;
       });
       this.setState({ buyListArr: newArr });
+      this.props.updateLinkCart(1);
     } else {
       const obj = { qnt: 1, title, thumbnail, price, available_quantity };
       const newArr = [...buyListArr, obj];
+      this.props.updateLinkCart(1);
       this.setState({ buyListArr: newArr });
     }
   }
@@ -77,6 +78,7 @@ ProductList.propTypes = {
       price: PropTypes.number.isRequired,
     })),
   }).isRequired,
+  updateLinkCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
