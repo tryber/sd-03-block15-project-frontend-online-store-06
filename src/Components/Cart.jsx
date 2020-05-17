@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import box from '../images/box.png';
 import QntButton from './QntButton';
+
+
+function endButton() {
+  return (
+    <Link to="checkout">
+      <button
+        data-testid="checkout-products"
+        type="button"
+      >
+        Finalizar Compra
+      </button>
+    </Link>
+  );
+}
 
 class Cart extends Component {
   constructor(props) {
@@ -50,9 +65,7 @@ class Cart extends Component {
     }
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => {
-          console.log('title', title);
-          return (
+        {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
@@ -66,8 +79,8 @@ class Cart extends Component {
               decreaseQnt={this.decreaseQnt}
             />
           </div>
-        )}
-        )}
+        ))}
+        {endButton()}
       </div>
     );
   }
