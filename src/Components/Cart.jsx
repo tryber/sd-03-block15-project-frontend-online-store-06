@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import box from '../images/box.png';
 import QntButton from './QntButton';
 
+const emptyCart = () => (
+  <div className="cart">
+    <div className="Vazio">
+      <img src={box} alt="Caixa-vazia" />
+      <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
+    </div>
+  </div>
+);
+
 class Cart extends Component {
   constructor(props) {
     super(props);
@@ -38,20 +47,10 @@ class Cart extends Component {
 
   render() {
     const { empty, buyListArr } = this.state;
-    if (empty) {
-      return (
-        <div className="cart">
-          <div className="Vazio">
-            <img src={box} alt="Caixa-vazia" />
-            <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
-          </div>
-        </div>
-      );
-    }
+    if (empty) emptyCart();
     return (
       <div>
         {buyListArr.map(({ title, thumbnail, price, qnt, available_quantity }) => {
-          console.log('title', title);
           return (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
