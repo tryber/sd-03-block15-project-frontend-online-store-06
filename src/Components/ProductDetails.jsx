@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import * as generalFunc from '../services/generalFunc';
 import Rating from './Rating';
 import QntButton from './QntButton';
+import LinkToCart from './LinkToCart';
 
 const porductNotFound = () => (
   <div>
@@ -42,20 +44,25 @@ class ProductDetails extends React.Component {
     super(props);
     const { location: { state } } = this.props;
     if (state) {
-      this.state = { product: { qnt: takingProperty('qnt', state.title), ...state } };
-    } else this.state = {};
+      this.state = {
+        product: { qnt: takingProperty('qnt', state.title), ...state },
+        unitsInCart: generalFunc.unitsInCart(),
+      };
+    } else this.state = { unitsInCart: generalFunc.unitsInCart() };
     this.changeQnt = this.changeQnt.bind(this);
+    this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
   }
 
   changeQnt(title, variation) {
     const { qnt, price, thumbnail, ...product } = this.state.product;
     const newQnt = qnt + variation;
     updateStorage(newQnt, title, price, thumbnail);
+    this.updateLinkCart(variation);
     this.setState({ product: { ...product, price, thumbnail, qnt: newQnt } });
   }
 
   render() {
-    const { product } = this.state;
+    const { product, unitsInCart } = this.state;
     if (!haveProperties(product)) return porductNotFound();
     const { title, thumbnail, price, qnt, ...details } = product;
     return (
@@ -80,6 +87,7 @@ class ProductDetails extends React.Component {
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />
+        <LinkToCart unitsInCart={unitsInCart} />
       </div>
     );
   }
