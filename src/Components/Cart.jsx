@@ -16,6 +16,14 @@ function endButton() {
     </Link>
   );
 }
+const emptyCart = () => (
+  <div className="cart">
+    <div className="Vazio">
+      <img src={box} alt="Caixa-vazia" />
+      <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
+    </div>
+  </div>
+);
 
 class Cart extends Component {
   constructor(props) {
@@ -50,27 +58,20 @@ class Cart extends Component {
 
   render() {
     const { buyListArr } = this.state;
-    if (buyListArr.length === 0) {
-      return (
-        <div className="cart">
-          <div className="Vazio">
-            <img src={box} alt="Caixa-vazia" />
-            <h3 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h3>
-          </div>
-        </div>
-      );
-    }
+    if (buyListArr.length === 0) return emptyCart();
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt }) => (
+        {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
           <div className="cart" key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
             <p>{`R$ ${price}`}</p>
+            {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
             <QntButton
               title={title}
               qnt={qnt}
               min={1}
+              max={availableQuantity}
               increaseQnt={this.increaseQnt}
               decreaseQnt={this.decreaseQnt}
             />
