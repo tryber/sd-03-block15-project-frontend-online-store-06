@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import box from '../images/box.png';
+import PropTypes from 'prop-types';
+
 import QntButton from './QntButton';
+import box from '../images/box.png';
 
 
 function endButton() {
