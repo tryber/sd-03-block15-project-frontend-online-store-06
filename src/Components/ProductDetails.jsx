@@ -39,8 +39,8 @@ const updateStorage = (value, title, product) => {
   if (alreadyExist) {
     newCart = cart.map((elem) => (
       elem.title === title ? Object.assign(elem, { qnt: value }) : elem
-      ));
-    } else {
+    ));
+  } else {
     const { price, thumbnail, available_quantity: availableQuantity, shipping } = product;
     const freeShipping = shipping.free_shipping;
     newCart = [...cart, { qnt: 1, title, price, thumbnail, availableQuantity, freeShipping }];
