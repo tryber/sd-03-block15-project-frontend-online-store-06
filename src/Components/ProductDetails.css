@@ -1,19 +1,18 @@
 .details {
-    border: 1px black solid;
-    width: 800px;
-    background-color: white;
-
+  border: 1px black solid;
+  width: 800px;
+  background-color: white;
 }
 
 .ProductDetails {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
 .backThumb {
-    background-color: white;
-    border: black solid 1px;
+  background-color: white;
+  border: black solid 1px;
 }
 .thumb {
-    width: 200px;
+  width: 200px;
 }

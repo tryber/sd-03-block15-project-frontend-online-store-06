@@ -6,7 +6,7 @@ import * as generalFunc from '../services/generalFunc';
 import Rating from './Rating';
 import QntButton from './QntButton';
 import LinkToCart from './LinkToCart';
-import './ProductDetails.css'
+import './ProductDetails.css';
 
 const porductNotFound = () => (
   <div>
@@ -38,13 +38,21 @@ const updateStorage = (value, title, product) => {
   const cart = JSON.parse(localStorage.getItem('buyList')) || [];
   const alreadyExist = cart.some((prod) => prod.title === title);
   if (alreadyExist) {
-    newCart = cart.map((elem) => (
+    newCart = cart.map((elem) =>
       elem.title === title ? Object.assign(elem, { qnt: value }) : elem
-    ));
+    );
   } else {
-    const { price, thumbnail, available_quantity: availableQuantity, shipping } = product;
+    const {
+      price,
+      thumbnail,
+      available_quantity: availableQuantity,
+      shipping,
+    } = product;
     const freeShipping = shipping.free_shipping;
-    newCart = [...cart, { qnt: 1, title, price, thumbnail, availableQuantity, freeShipping }];
+    newCart = [
+      ...cart,
+      { qnt: 1, title, price, thumbnail, availableQuantity, freeShipping },
+    ];
   }
   localStorage.setItem('buyList', JSON.stringify(newCart));
 };
@@ -52,7 +60,9 @@ const updateStorage = (value, title, product) => {
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    const { location: { state } } = this.props;
+    const {
+      location: { state },
+    } = this.props;
     if (state) {
       this.state = {
         product: { qnt: takingProperty('qnt', state.title), ...state },
@@ -74,7 +84,15 @@ class ProductDetails extends React.Component {
   render() {
     const { product, unitsInCart } = this.state;
     if (!haveProperties(product)) return porductNotFound();
-    const { title, thumbnail, price, qnt, available_quantity: aQ, shipping, ...others } = product;
+    const {
+      title,
+      thumbnail,
+      price,
+      qnt,
+      available_quantity: aQ,
+      shipping,
+      ...others
+    } = product;
     const freeShipping = shipping.free_shipping;
     return (
       <div>

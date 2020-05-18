@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SearchBar.css'
+import './SearchBar.css';
 
 class SearchBar extends React.Component {
   render() {
     const { searchText, onSearchTextChange, onSubmit } = this.props;
     return (
-      <form className='bar'>
+      <form className="bar">
         <label htmlFor="searchText">
           <input
             value={searchText}

@@ -87,7 +87,9 @@ class Cart extends Component {
               <div>
                 <p>{`R$ ${price}`}</p>
                 {freeShipping && (
-                  <p data-testid="free-shipping" className='frete'>FRETE GRÁTIS</p>
+                  <p data-testid="free-shipping" className="frete">
+                    FRETE GRÁTIS
+                  </p>
                 )}
               </div>
             </div>
