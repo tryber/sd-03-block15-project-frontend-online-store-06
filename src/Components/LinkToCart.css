@@ -1,11 +1,11 @@
 .carrinho {
-  position: absolute;
-  color: white;
-  display: flex;
-  right: 5%;
-  top: 2%;
   background-color: white;
   border-radius: 30%;
+  color: white;
+  display: flex;
+  position: absolute;
+  right: 5%;
+  top: 2%;
 }
 
 .number {

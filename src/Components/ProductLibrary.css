@@ -12,11 +12,11 @@ header {
 .title {
   color: white;
   font-size: 24px;
+  font-family: Terminator;
   left: 5%;
   position: absolute;
   text-align: center;
   top: -4%;
-  font-family: Terminator;
 }
 
 @font-face {

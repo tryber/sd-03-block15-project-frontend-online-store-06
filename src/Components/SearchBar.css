@@ -1,8 +1,8 @@
 .bar {
-  width: 45%;
-  position: relative;
-  left: 30%;
   bottom: 10%;
+  left: 30%;
+  position: relative;
+  width: 45%;
 }
 
 .searchBar {

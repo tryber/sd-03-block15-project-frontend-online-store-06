@@ -63,27 +63,13 @@ class Cart extends Component {
     return (
       <div>
         {buyListArr.map(
-          ({
-            title,
-            thumbnail,
-            price,
-            qnt,
-            availableQuantity,
-            freeShipping,
-          }) => (
+          ({ title, thumbnail, price, qnt, availableQuantity, freeShipping, }) => (
             <div className="cart" key={title}>
               <img src={thumbnail} alt={`${title} img`} />
               <p className=".detalhes" data-testid="shopping-cart-product-name">
                 {title}
               </p>
-              <QntButton
-                title={title}
-                qnt={qnt}
-                min={1}
-                max={availableQuantity}
-                increaseQnt={this.increaseQnt}
-                decreaseQnt={this.decreaseQnt}
-              />
+              <QntButton title={title} qnt={qnt} min={1} max={availableQuantity} increaseQnt={this.increaseQnt} decreaseQnt={this.decreaseQnt} />
               <div>
                 <p>{`R$ ${price}`}</p>
                 {freeShipping && (
