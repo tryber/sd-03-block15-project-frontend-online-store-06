@@ -17,8 +17,8 @@
 }
 
 .nome {
-  margin: auto;
   height: 90px;
+  margin: auto;
   overflow: auto;
 }
 
@@ -29,8 +29,8 @@
 
 .product {
   background-color: white;
-  border: black solid 1px;
   border-radius: 10px;
+  border: black solid 1px;
   display: flex;
   flex-direction: column;
   margin-top: 10px;
