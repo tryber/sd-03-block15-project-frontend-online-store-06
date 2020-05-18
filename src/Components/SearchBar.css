@@ -6,11 +6,11 @@
 }
 
 .searchBar {
-  border-radius: 20px;
   border: 2px solid #ccc;
+  border-radius: 20px;
   box-sizing: border-box;
   display: inline-block;
-  padding: 7px;
   margin: 30px 0;
+  padding: 7px;
   width: 85%;
 }
