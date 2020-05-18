@@ -42,7 +42,7 @@ class Cart extends Component {
       const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
       this.setState({ buyListArr: memoryArrCart });
     }
-    if (!full) {
+    if (!full && asideButtonArr !== null) {
       this.setState({ buyListArr: asideButtonArr });
     }
   }
@@ -73,7 +73,7 @@ class Cart extends Component {
     const { buyListArr } = this.state;
     const { full, asideButtonArr } = this.props;
     const Arr = full ? buyListArr : asideButtonArr;
-    if (buyListArr.length === 0) return emptyCart();
+    if (Arr.length === 0 || (full === false && Arr === null)) return emptyCart();
     return (
       <div>
         {Arr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (

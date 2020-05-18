@@ -22,6 +22,7 @@ class ProductLibrary extends React.Component {
     };
     this.findProducts = this.findProducts.bind(this);
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
+    this.updateaSideButtonArr = this.updateaSideButtonArr.bind(this);
   }
 
   componentDidMount() {
@@ -84,7 +85,7 @@ class ProductLibrary extends React.Component {
           searchText={searchText}
           selectCategory={selectCategory}
           updateLinkCart={this.updateLinkCart}
-          updateaSideButtonArr={() => this.updateaSideButtonArr()}
+          updateaSideButtonArr={this.updateaSideButtonArr}
         />
         <LinkToCart unitsInCart={unitsInCart} />
         <AsideButton asideButtonArr={asideButtonArr} />

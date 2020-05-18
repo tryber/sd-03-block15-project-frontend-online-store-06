@@ -25,7 +25,7 @@ class ProductList extends React.Component {
     this.setState({ buyListArr: elem });
   }
 
-  buyButton(product) {
+  async buyButton(product) {
     const { updateaSideButtonArr } = this.props;
     const { buyListArr } = this.state;
     const { title, thumbnail, price, available_quantity: aQ, shipping } = product;

@@ -69,10 +69,6 @@ class ProductDetails extends React.Component {
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
   }
 
-  componentDidUpdate() {
-    this.changingTheAsideButtonArr();
-  }
-
   changingTheAsideButtonArr() {
     const asideButtonArrFromDetails = JSON.parse(localStorage.getItem('buyList'));
     this.setState({ asideButtonArr: asideButtonArrFromDetails });
@@ -84,6 +80,7 @@ class ProductDetails extends React.Component {
     updateStorage(newQnt, title, product);
     this.updateLinkCart(variation);
     this.setState({ product: { ...product, qnt: newQnt } });
+    this.changingTheAsideButtonArr();
   }
 
   render() {
@@ -100,9 +97,7 @@ class ProductDetails extends React.Component {
           <p>Price: {price}</p>
           {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
         </figure>
-        <section>
-          {Object.entries(others).map(selectProperties)}
-        </section>
+        <section>{Object.entries(others).map(selectProperties)}</section>
         <Rating />
         <QntButton
           title={title}

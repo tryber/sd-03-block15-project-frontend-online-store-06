@@ -20,7 +20,7 @@ function QntButton(props) {
         onClick={() => increaseQnt(title, 1)}
         disabled={qnt >= max}
       >
-        <span data-testid="product-detail-add-to-cart" >+</span>
+        <span data-testid="product-detail-add-to-cart">+</span>
       </button>
     </div>
   );

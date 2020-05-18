@@ -21,7 +21,7 @@ class AsideButton extends React.Component {
         {open ? <Cart full={false} asideButtonArr={asideButtonArr} /> : null}
       </div>
     );
-  };
+  }
 }
 
 export default AsideButton;
