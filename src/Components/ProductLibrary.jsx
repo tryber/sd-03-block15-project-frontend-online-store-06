@@ -14,9 +14,12 @@ class ProductLibrary extends React.Component {
       categoryChanged: false,
       searchText: '',
       selectCategory: '',
-      products: {},
+      products: [],
       categories: [],
+      order: '',
+      oldOrder: {},
       unitsInCart: generalFunc.unitsInCart(),
+
     };
     this.findProducts = this.findProducts.bind(this);
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
@@ -40,6 +43,48 @@ class ProductLibrary extends React.Component {
     this.setState({ [name]: value });
   }
 
+  orderChange(event, name) {
+    const { products, oldOrder } = this.state;
+    const { value } = event.target;
+    if (value === 'Incresing') {
+      console.log(products);
+      const newOrder = products.sort((a, b) => a.price - b.price);
+      this.setState({
+        [name]: value,
+        products: newOrder,
+      });
+    }
+    if (value === 'Decreasing') {
+      const newOrder = products.sort((a, b) => b.price - a.price);
+      this.setState({
+        [name]: value,
+        products: newOrder,
+      });
+    }
+    if (value === '') {
+      this.setState({
+        [name]: value,
+        products: oldOrder,
+      });
+    }
+  }
+
+  orderOfSearch() {
+    const { order } = this.state;
+    return (
+      <select
+        value={order}
+        onChange={
+          (event) => this.orderChange(event, 'order')
+        }
+      >
+        <option value="">Ordenar por:</option>
+        <option value="Incresing">Crescente</option>
+        <option value="Decreasing">Decrescente</option>
+      </select>
+    );
+  }
+
   categoryChange(event, name) {
     const { value } = event.target;
     this.setState({
@@ -51,7 +96,11 @@ class ProductLibrary extends React.Component {
   async findProducts() {
     const { searchText, selectCategory } = this.state;
     return api.getProductsFromCategoryAndQuery(selectCategory, searchText)
-      .then((products) => this.setState({ products, categoryChanged: false }));
+      .then((elem) => this.setState({
+        products: elem.results,
+        categoryChanged: false,
+        oldOrder: elem.results,
+      }));
   }
 
   render() {
@@ -68,6 +117,7 @@ class ProductLibrary extends React.Component {
           onSearchTextChange={(event) => this.textChange(event, 'searchText')}
           onSubmit={() => this.findProducts()}
         />
+        {this.orderOfSearch()}
         <ProductList
           products={products}
           searchText={searchText}
