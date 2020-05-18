@@ -1,0 +1,9 @@
+.productList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 20px;
+    position: absolute;
+    right: 1%;
+    width: 70%;
+  }

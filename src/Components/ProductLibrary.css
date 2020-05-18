@@ -1,0 +1,25 @@
+body {
+  background-color: whitesmoke;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+header {
+  background-image: linear-gradient(#0f1522, #3f0303 50%);
+  height: 80px;
+}
+
+.title {
+  color: white;
+  font-size: 24px;
+  left: 5%;
+  position: absolute;
+  text-align: center;
+  top: -4%;
+  font-family: Terminator;
+}
+
+@font-face {
+  font-family: 'Terminator';
+  src: url(../fonts/terminator\ real\ nfi.ttf);
+}

@@ -1,0 +1,7 @@
+.CategoryList {
+    background-color: white;
+    border: solid black 1px;
+    position: absolute;
+    width: 300px;
+    left: 1%;
+  }

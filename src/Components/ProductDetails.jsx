@@ -6,6 +6,7 @@ import * as generalFunc from '../services/generalFunc';
 import Rating from './Rating';
 import QntButton from './QntButton';
 import LinkToCart from './LinkToCart';
+import './ProductDetails.css'
 
 const porductNotFound = () => (
   <div>
@@ -77,17 +78,21 @@ class ProductDetails extends React.Component {
     const freeShipping = shipping.free_shipping;
     return (
       <div>
-        <h3 data-testid="product-detail-name">{title}</h3>
-        <figure>
-          <img alt="#" src={thumbnail} />
-          <figcaption>{`${title} image`}</figcaption>
-          <p>Price: {price}</p>
-          {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
-        </figure>
-        <section>
-          {Object.entries(others).map(selectProperties)}
-        </section>
-        <Rating />
+        <h3 data-testid="product-detail-name">
+          {title} - Price: R${price}
+        </h3>
+        <div className="ProductDetails">
+          <div className="backThumb">
+            <figure>
+              <img alt="#" src={thumbnail} className="thumb" />
+              {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
+            </figure>
+          </div>
+          <section className="details">
+            Especificações Técnicas:
+            {Object.entries(others).map(selectProperties)}
+          </section>
+        </div>
         <QntButton
           title={title}
           qnt={qnt}
@@ -96,6 +101,7 @@ class ProductDetails extends React.Component {
           increaseQnt={this.changeQnt}
           decreaseQnt={this.changeQnt}
         />
+        <Rating />
         <LinkToCart unitsInCart={unitsInCart} />
       </div>
     );

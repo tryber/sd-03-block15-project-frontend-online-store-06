@@ -1,0 +1,45 @@
+.add {
+  display: flex;
+  align-self: flex-end;
+  margin: auto;
+}
+
+.detalhe {
+  margin: 30%;
+}
+
+.frete {
+  background-color: rgb(3, 148, 3);
+  color: white;
+  margin: auto;
+  text-align: center;
+  pointer-events: none;
+}
+
+.nome {
+  margin: auto;
+  height: 90px;
+  overflow: auto;
+}
+
+.preço {
+    font-size: 22px;
+    font-family: sans-serif;
+}
+
+.product {
+  background-color: white;
+  border: black solid 1px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 1%;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnail {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

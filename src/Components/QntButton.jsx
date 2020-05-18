@@ -1,10 +1,11 @@
 import React from 'react';
 import PropType from 'prop-types';
+import './QntButton.css'
 
 function QntButton(props) {
   const { title, qnt, increaseQnt, decreaseQnt, min, max } = props;
   return (
-    <div>
+    <div className='button'>
       <button
         type="button"
         data-testid="product-decrease-quantity"

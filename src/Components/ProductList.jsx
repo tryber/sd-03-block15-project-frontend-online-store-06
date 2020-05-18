@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
+import './ProductList.css'
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -52,14 +53,14 @@ class ProductList extends React.Component {
     const { products, searchText, selectCategory } = this.props;
     if (searchText === '' && selectCategory === '') {
       return (
-        <h4 data-testid="home-initial-message">
+        <h4 data-testid="home-initial-message" className="productList">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h4>
       );
     }
-    if (!products) return <h4>Nenhum Produto foi encontrado</h4>;
+    if (!products) return <h4 className="productList">Nenhum Produto foi encontrado</h4>;
     return (
-      <div>
+      <div className="productList">
         {products.map((product) => (
           <Product
             product={product}
