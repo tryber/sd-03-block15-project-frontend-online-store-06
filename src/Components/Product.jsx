@@ -20,26 +20,18 @@ class Product extends React.Component {
           <img src={thumbnail} alt={`${title} img`} className="thumbnail" />
           <p className="preço">{`R$ ${price}`}</p>
           <p className="nome">{title}</p>
-          <Link
-            data-testid="product-detail-link"
-            to={{ pathname: `/products/${id}`, state: product }}
-            className="detalhe"
-          >
+          <Link data-testid="product-detail-link" 
+          to={{ pathname: `/products/${id}`, state: product }} 
+          className="detalhe" >
             Detalhes
           </Link>
           <div className="add">
-            <button
-              type="button"
-              data-testid="product-add-to-cart"
-              onClick={buyButton}
-            >
+            <button type="button" data-testid="product-add-to-cart" onClick={buyButton} >
               Adicionar ao Carrinho
             </button>
           </div>
           {freeShipping && (
-            <p data-testid="free-shipping" className="frete">
-              FRETE GRÁTIS
-            </p>
+            <p data-testid="free-shipping" className="frete"> FRETE GRÁTIS </p>
           )}
         </div>
       </div>
