@@ -6,6 +6,7 @@ import * as generalFunc from '../services/generalFunc';
 import Rating from './Rating';
 import QntButton from './QntButton';
 import LinkToCart from './LinkToCart';
+import AsideButton from './AsideButton';
 
 const porductNotFound = () => (
   <div>
@@ -56,10 +57,25 @@ class ProductDetails extends React.Component {
       this.state = {
         product: { qnt: takingProperty('qnt', state.title), ...state },
         unitsInCart: generalFunc.unitsInCart(),
+        asideButtonArr: [],
       };
-    } else this.state = { unitsInCart: generalFunc.unitsInCart() };
+    } else {
+      this.state = {
+        unitsInCart: generalFunc.unitsInCart(),
+        asideButtonArr: [],
+      };
+    }
     this.changeQnt = this.changeQnt.bind(this);
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
+  }
+
+  componentDidUpdate() {
+    this.changingTheAsideButtonArr();
+  }
+
+  changingTheAsideButtonArr() {
+    const asideButtonArrFromDetails = JSON.parse(localStorage.getItem('buyList'));
+    this.setState({ asideButtonArr: asideButtonArrFromDetails });
   }
 
   changeQnt(title, variation) {
@@ -71,7 +87,7 @@ class ProductDetails extends React.Component {
   }
 
   render() {
-    const { product, unitsInCart } = this.state;
+    const { product, unitsInCart, asideButtonArr } = this.state;
     if (!haveProperties(product)) return porductNotFound();
     const { title, thumbnail, price, qnt, available_quantity: aQ, shipping, ...others } = product;
     const freeShipping = shipping.free_shipping;
@@ -97,6 +113,7 @@ class ProductDetails extends React.Component {
           decreaseQnt={this.changeQnt}
         />
         <LinkToCart unitsInCart={unitsInCart} />
+        <AsideButton asideButtonArr={asideButtonArr} />
       </div>
     );
   }

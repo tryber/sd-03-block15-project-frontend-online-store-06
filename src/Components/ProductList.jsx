@@ -26,6 +26,7 @@ class ProductList extends React.Component {
   }
 
   buyButton(product) {
+    const { updateaSideButtonArr } = this.props;
     const { buyListArr } = this.state;
     const { title, thumbnail, price, available_quantity: aQ, shipping } = product;
     const freeShipping = shipping.free_shipping;
@@ -39,11 +40,13 @@ class ProductList extends React.Component {
       });
       this.setState({ buyListArr: newArr });
       this.props.updateLinkCart(1);
+      updateaSideButtonArr();
     } else {
       const obj = { qnt: 1, title, thumbnail, price, availableQuantity: aQ, freeShipping };
       const newArr = [...buyListArr, obj];
       this.props.updateLinkCart(1);
       this.setState({ buyListArr: newArr });
+      updateaSideButtonArr();
     }
   }
 
@@ -80,6 +83,7 @@ ProductList.propTypes = {
     })),
   }).isRequired,
   updateLinkCart: PropTypes.func.isRequired,
+  updateaSideButtonArr: PropTypes.func.isRequired,
 };
 
 export default ProductList;

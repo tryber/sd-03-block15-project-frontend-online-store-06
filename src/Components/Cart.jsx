@@ -31,10 +31,20 @@ const emptyCart = () => (
 class Cart extends Component {
   constructor(props) {
     super(props);
-    const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
-    this.state = { buyListArr: memoryArrCart || [] };
+    this.state = { buyListArr: [] };
     this.increaseQnt = this.increaseQnt.bind(this);
     this.decreaseQnt = this.decreaseQnt.bind(this);
+  }
+
+  componentDidMount() {
+    const { full, asideButtonArr } = this.props;
+    if (full) {
+      const memoryArrCart = JSON.parse(localStorage.getItem('buyList'));
+      this.setState({ buyListArr: memoryArrCart });
+    }
+    if (!full) {
+      this.setState({ buyListArr: asideButtonArr });
+    }
   }
 
   decreaseQnt(obj) {
@@ -61,12 +71,13 @@ class Cart extends Component {
 
   render() {
     const { buyListArr } = this.state;
-    const { full } = this.props;
+    const { full, asideButtonArr } = this.props;
+    const Arr = full ? buyListArr : asideButtonArr;
     if (buyListArr.length === 0) return emptyCart();
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
-          <div className={`cart ${full ? 'aside' : '' }`} key={title}>
+        {Arr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
+          <div className={`cart ${full ? 'aside' : ''}`} key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
             <p>{`R$ ${price}`}</p>
