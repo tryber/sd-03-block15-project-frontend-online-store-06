@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import cartImage from '../images/carrinho.png';
-import './LinkToCart.css'
+import './LinkToCart.css';
 
 function LinkToCart(props) {
   return (
@@ -11,7 +11,7 @@ function LinkToCart(props) {
         {props.unitsInCart}
       </div>
       <Link to="/cart" data-testid="shopping-cart-button">
-        <img src={cartImage} alt="cart-button" width='40px' />
+        <img src={cartImage} alt="cart-button" width="40px" />
       </Link>
     </div>
   );

@@ -118,10 +118,9 @@ class ProductLibrary extends React.Component {
           <LinkToCart unitsInCart={unitsInCart} />
           <SearchBar searchText={searchText} onSearchTextChange={(event) => this.textChange(event, 'searchText')} onSubmit={() => this.findProducts()} />
                   {this.orderOfSearch()}
-        </header>
-        <CategoryList categories={categories} selectCategory={selectCategory} onCategoryChange={(event) => this.categoryChange(event, 'selectCategory')
-          }
+        <CategoryList categories={categories} selectCategory={selectCategory} onCategoryChange={(event) => this.categoryChange(event, 'selectCategory') }
         />
+        </header>
         <ProductList products={products} searchText={searchText} selectCategory={selectCategory} updateLinkCart={this.updateLinkCart} />
       </div>
     );

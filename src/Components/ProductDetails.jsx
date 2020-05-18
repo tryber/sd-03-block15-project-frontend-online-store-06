@@ -84,41 +84,22 @@ class ProductDetails extends React.Component {
   render() {
     const { product, unitsInCart } = this.state;
     if (!haveProperties(product)) return porductNotFound();
-    const {
-      title,
-      thumbnail,
-      price,
-      qnt,
-      available_quantity: aQ,
-      shipping,
-      ...others
+    const { title, thumbnail, price, qnt, available_quantity: aQ, shipping, ...others
     } = product;
     const freeShipping = shipping.free_shipping;
     return (
       <div>
-        <h3 data-testid="product-detail-name">
-          {title} - Price: R${price}
-        </h3>
+        <h3 data-testid="product-detail-name"> {title} - Price: R${price} </h3>
         <div className="ProductDetails">
           <div className="backThumb">
-            <figure>
-              <img alt="#" src={thumbnail} className="thumb" />
-              {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
-            </figure>
+            <figure> <img alt="#" src={thumbnail} className="thumb" /> {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>} </figure>
           </div>
           <section className="details">
             Especificações Técnicas:
             {Object.entries(others).map(selectProperties)}
           </section>
         </div>
-        <QntButton
-          title={title}
-          qnt={qnt}
-          min={0}
-          max={aQ}
-          increaseQnt={this.changeQnt}
-          decreaseQnt={this.changeQnt}
-        />
+        <QntButton title={title} qnt={qnt} min={0} max={aQ} increaseQnt={this.changeQnt} decreaseQnt={this.changeQnt} />
         <Rating />
         <LinkToCart unitsInCart={unitsInCart} />
       </div>

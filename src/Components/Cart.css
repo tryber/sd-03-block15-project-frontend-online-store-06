@@ -1,13 +1,13 @@
 .cart {
   background-color: white;
-  border: black solid 1px;
   border-radius: 10px;
+  border: black solid 1px;
   display: flex;
   flex-flow: row;
   left: 1%;
+  margin-top: 10px;
   padding: 1%;
   position: relative;
-  margin-top: 10px;
   width: 50%;
 }
 
