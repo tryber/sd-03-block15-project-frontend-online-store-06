@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import box from '../images/box.png';
+import PropTypes from 'prop-types';
+
 import QntButton from './QntButton';
+import box from '../images/box.png';
 
 
 function endButton() {
@@ -16,6 +18,7 @@ function endButton() {
     </Link>
   );
 }
+
 const emptyCart = () => (
   <div className="cart">
     <div className="Vazio">
@@ -58,11 +61,12 @@ class Cart extends Component {
 
   render() {
     const { buyListArr } = this.state;
+    const { full } = this.props;
     if (buyListArr.length === 0) return emptyCart();
     return (
       <div>
         {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
-          <div className="cart" key={title}>
+          <div className={`cart ${full ? 'aside' : '' }`} key={title}>
             <img src={thumbnail} alt={`${title} img`} />
             <p data-testid="shopping-cart-product-name">{title}</p>
             <p>{`R$ ${price}`}</p>
@@ -82,5 +86,9 @@ class Cart extends Component {
     );
   }
 }
+
+Cart.defaultProps = { full: true };
+
+Cart.propTypes = { full: PropTypes.bool };
 
 export default Cart;
