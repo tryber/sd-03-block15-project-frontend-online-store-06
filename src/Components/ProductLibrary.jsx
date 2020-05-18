@@ -78,7 +78,7 @@ class ProductLibrary extends React.Component {
           (event) => this.orderChange(event, 'order')
         }
       >
-        <option value=""> </option>
+        <option value="">Ordenar por:</option>
         <option value="Incresing">Crescente</option>
         <option value="Decreasing">Decrescente</option>
       </select>
