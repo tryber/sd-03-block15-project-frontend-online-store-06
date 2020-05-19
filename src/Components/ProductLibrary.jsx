@@ -129,19 +129,13 @@ class ProductLibrary extends React.Component {
           />
         </header>
         <div className='ordenar'>{this.orderOfSearch()}</div>
-        <CategoryList
-          categories={categories}
-          selectCategory={selectCategory}
-          onCategoryChange={(event) =>
+        <CategoryList categories={categories} 
+          selectCategory={selectCategory} onCategoryChange={(event) =>
             this.categoryChange(event, 'selectCategory')
           }
         />
-        <ProductList
-          products={products}
-          searchText={searchText}
-          selectCategory={selectCategory}
-          updateLinkCart={this.updateLinkCart}
-        />
+        <ProductList products={products} searchText={searchText} 
+          selectCategory={selectCategory} updateLinkCart={this.updateLinkCart} />
       </div>
     );
   }
