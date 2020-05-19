@@ -30,7 +30,7 @@ class ProductLibrary extends React.Component {
       .getCategories()
       .then((categories) => this.setState({ categories }))
       .catch((error) =>
-        console.log('Não foi possível buscar as categorias por:', error)
+        console.log('Não foi possível buscar as categorias por:', error),
       );
   }
 
@@ -103,7 +103,7 @@ class ProductLibrary extends React.Component {
           products: elem.results,
           categoryChanged: false,
           oldOrder: elem.results,
-        })
+        }),
       );
   }
 
@@ -128,13 +128,14 @@ class ProductLibrary extends React.Component {
             onSubmit={() => this.findProducts()}
           />
         </header>
-        <div className='ordenar'>{this.orderOfSearch()}</div>
-        <CategoryList categories={categories} 
+        <div className="ordenar">{this.orderOfSearch()}</div>
+        <CategoryList 
+        categories={categories} 
           selectCategory={selectCategory} onCategoryChange={(event) =>
             this.categoryChange(event, 'selectCategory')
           }
         />
-        <ProductList products={products} searchText={searchText} 
+        <ProductList products={products} searchText={searchText}
           selectCategory={selectCategory} updateLinkCart={this.updateLinkCart} />
       </div>
     );

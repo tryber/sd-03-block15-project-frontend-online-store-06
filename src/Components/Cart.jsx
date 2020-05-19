@@ -69,9 +69,9 @@ class Cart extends Component {
               <p className=".detalhes" data-testid="shopping-cart-product-name">
                 {title}
               </p>
-              <QntButton 
+              <QntButton
                 title={title} qnt={qnt} min={1} max={availableQuantity}
-                  increaseQnt={this.increaseQnt} decreaseQnt={this.decreaseQnt} 
+                increaseQnt={this.increaseQnt} decreaseQnt={this.decreaseQnt}
               />
               <div>
                 <p>{`R$ ${price}`}</p>

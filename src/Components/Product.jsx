@@ -20,8 +20,9 @@ class Product extends React.Component {
           <img src={thumbnail} alt={`${title} img`} className="thumbnail" />
           <p className="preço">{`R$ ${price}`}</p>
           <p className="nome">{title}</p>
-          <Link data-testid="product-detail-link" 
-          to={{ pathname: `/products/${id}`, state: product }} 
+          <Link 
+          data-testid="product-detail-link"
+          to={{ pathname: `/products/${id}`, state: product }}
           className="detalhe" >
             Detalhes
           </Link>
