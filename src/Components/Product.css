@@ -12,8 +12,8 @@
   background-color: rgb(3, 148, 3);
   color: white;
   margin: auto;
-  text-align: center;
   pointer-events: none;
+  text-align: center;
 }
 
 .nome {

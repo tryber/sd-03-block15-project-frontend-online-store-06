@@ -108,7 +108,13 @@ class ProductLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, products, categories, selectCategory, unitsInCart, } = this.state;
+    const {
+      searchText,
+      products,
+      categories,
+      selectCategory,
+      unitsInCart,
+    } = this.state;
     return (
       <div>
         <header>
@@ -116,13 +122,26 @@ class ProductLibrary extends React.Component {
             THE <br /> CODENATOR'S <br /> MARKET
           </h4>
           <LinkToCart unitsInCart={unitsInCart} />
-          <SearchBar searchText={searchText} onSearchTextChange={(event) => this.textChange(event, 'searchText')} onSubmit={() => this.findProducts()} />
-             {this.orderOfSearch()}
-        <CategoryList categories={categories} selectCategory={selectCategory} onCategoryChange={(event) => this.categoryChange(event, 'selectCategory') }
-        />
+          <SearchBar
+            searchText={searchText}
+            onSearchTextChange={(event) => this.textChange(event, 'searchText')}
+            onSubmit={() => this.findProducts()}
+          />
         </header>
-        <ProductList products={products} searchText={searchText} 
-        selectCategory={selectCategory} updateLinkCart={this.updateLinkCart} />
+        <div className='ordenar'>{this.orderOfSearch()}</div>
+        <CategoryList
+          categories={categories}
+          selectCategory={selectCategory}
+          onCategoryChange={(event) =>
+            this.categoryChange(event, 'selectCategory')
+          }
+        />
+        <ProductList
+          products={products}
+          searchText={searchText}
+          selectCategory={selectCategory}
+          updateLinkCart={this.updateLinkCart}
+        />
       </div>
     );
   }

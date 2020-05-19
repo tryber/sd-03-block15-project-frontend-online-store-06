@@ -9,10 +9,15 @@ header {
   height: 80px;
 }
 
+.ordenar {
+  position: relative;
+  left: 1%;
+}
+
 .title {
   color: white;
-  font-size: 24px;
   font-family: Terminator;
+  font-size: 24px;
   left: 5%;
   position: absolute;
   text-align: center;
