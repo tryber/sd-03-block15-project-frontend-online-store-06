@@ -16,15 +16,14 @@ header {
 
 .title {
   color: white;
-  font-family: Terminator;
-  font-size: 24px;
+  font-size: 20px;
   left: 5%;
   position: absolute;
   text-align: center;
   top: -4%;
 }
 
-@font-face {
-  font-family: 'Terminator';
+/* @font-face {
+  font-family: Terminator;
   src: url('../fonts/terminator.ttf');
-}
+} */
