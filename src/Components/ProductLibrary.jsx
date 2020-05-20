@@ -113,7 +113,7 @@ class ProductLibrary extends React.Component {
       <div>
         <header>
           <h4 className="title">
-            THE<br/>CODENATOR'S<br/>MARKET
+            THE<br />CODENATOR'S<br />MARKET
           </h4>
           <LinkToCart unitsInCart={unitsInCart} />
           <SearchBar
