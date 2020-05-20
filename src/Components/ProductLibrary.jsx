@@ -108,13 +108,7 @@ class ProductLibrary extends React.Component {
   }
 
   render() {
-    const {
-      searchText,
-      products,
-      categories,
-      selectCategory,
-      unitsInCart,
-    } = this.state;
+    const { searchText, products, categories, selectCategory, unitsInCart, } = this.state;
     return (
       <div>
         <header>
@@ -129,14 +123,16 @@ class ProductLibrary extends React.Component {
           />
         </header>
         <div className="ordenar">{this.orderOfSearch()}</div>
-        <CategoryList 
-        categories={categories} 
+        <CategoryList
+          categories={categories}
           selectCategory={selectCategory} onCategoryChange={(event) =>
             this.categoryChange(event, 'selectCategory')
           }
         />
-        <ProductList products={products} searchText={searchText}
-          selectCategory={selectCategory} updateLinkCart={this.updateLinkCart} />
+        <ProductList
+          products={products} searchText={searchText}
+          selectCategory={selectCategory} updateLinkCart={this.updateLinkCart}
+        />
       </div>
     );
   }

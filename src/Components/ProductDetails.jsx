@@ -39,7 +39,7 @@ const updateStorage = (value, title, product) => {
   const alreadyExist = cart.some((prod) => prod.title === title);
   if (alreadyExist) {
     newCart = cart.map((elem) =>
-      { return elem.title === title ? Object.assign(elem, { qnt: value }) : elem}
+      { return elem.title === title ? Object.assign(elem, { qnt: value }) : elem; },
     );
   } else {
     const {
@@ -60,7 +60,7 @@ const updateStorage = (value, title, product) => {
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
-    const { location: { state }, } = this.props;
+    const { location: { state } } = this.props;
     if (state) {
       this.state = {
         product: { qnt: takingProperty('qnt', state.title), ...state },
@@ -89,16 +89,18 @@ class ProductDetails extends React.Component {
         <h3 data-testid="product-detail-name"> {title} - Price: R${price} </h3>
         <div className="ProductDetails">
           <div className="backThumb">
-            <figure> <img alt="#" src={thumbnail} className="thumb" /> 
-            {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>} </figure>
+            <figure> <img alt="#" src={thumbnail} className="thumb" />
+              {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>} </figure>
           </div>
           <section className="details">
             Especificações Técnicas:
             {Object.entries(others).map(selectProperties)}
           </section>
         </div>
-        <QntButton title={title} qnt={qnt} min={0} max={aQ} 
-        increaseQnt={this.changeQnt} decreaseQnt={this.changeQnt} />
+        <QntButton 
+          title={title} qnt={qnt} min={0} max={aQ} 
+          increaseQnt={this.changeQnt} decreaseQnt={this.changeQnt} 
+        />
         <Rating />
         <LinkToCart unitsInCart={unitsInCart} />
       </div>

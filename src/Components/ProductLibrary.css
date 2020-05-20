@@ -25,6 +25,6 @@ header {
 }
 
 @font-face {
-  font-family: 'Terminator';
-  src: url(../fonts/terminator\real\nfi.ttf);
+  font-family: Terminator;
+  src: url("../fonts/terminator\ real\ nfi.ttf");
 }
