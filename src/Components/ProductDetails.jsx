@@ -97,9 +97,9 @@ class ProductDetails extends React.Component {
             {Object.entries(others).map(selectProperties)}
           </section>
         </div>
-        <QntButton 
-          title={title} qnt={qnt} min={0} max={aQ} 
-          increaseQnt={this.changeQnt} decreaseQnt={this.changeQnt} 
+        <QntButton
+          title={title} qnt={qnt} min={0} max={aQ}
+          increaseQnt={this.changeQnt} decreaseQnt={this.changeQnt}
         />
         <Rating />
         <LinkToCart unitsInCart={unitsInCart} />

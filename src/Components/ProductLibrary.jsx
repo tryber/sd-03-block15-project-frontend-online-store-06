@@ -108,7 +108,7 @@ class ProductLibrary extends React.Component {
   }
 
   render() {
-    const { searchText, products, categories, selectCategory, unitsInCart, } = this.state;
+    const { searchText, products, categories, selectCategory, unitsInCart } = this.state;
     return (
       <div>
         <header>
