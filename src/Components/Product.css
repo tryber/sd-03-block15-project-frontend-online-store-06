@@ -29,8 +29,8 @@
 
 .product {
   background-color: white;
-  border-radius: 10px;
   border: black solid 1px;
+  border-radius: 10px;
   margin-top: 10px;
   padding: 1%;
   width: 150px;
