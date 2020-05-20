@@ -113,7 +113,11 @@ class ProductLibrary extends React.Component {
       <div>
         <header>
           <h4 className="title">
-            THE<br />CODENATOR'S<br />MARKET
+            THE
+            <br />
+            CODENATOR'S
+            <br />
+            MARKET
           </h4>
           <LinkToCart unitsInCart={unitsInCart} />
           <SearchBar
@@ -125,13 +129,16 @@ class ProductLibrary extends React.Component {
         <div className="ordenar">{this.orderOfSearch()}</div>
         <CategoryList
           categories={categories}
-          selectCategory={selectCategory} onCategoryChange={(event) =>
+          selectCategory={selectCategory}
+          onCategoryChange={(event) =>
             this.categoryChange(event, 'selectCategory')
           }
         />
         <ProductList
-          products={products} searchText={searchText}
-          selectCategory={selectCategory} updateLinkCart={this.updateLinkCart}
+          products={products}
+          searchText={searchText}
+          selectCategory={selectCategory}
+          updateLinkCart={this.updateLinkCart}
         />
       </div>
     );
