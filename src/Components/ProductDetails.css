@@ -1,0 +1,19 @@
+.details {
+  background-color: white;
+  border: 1px black solid;
+  width: 800px;
+}
+
+.ProductDetails {
+  display: flex;
+  justify-content: space-around;
+}
+
+.backThumb {
+  background-color: white;
+  border: black solid 1px;
+}
+
+.thumb {
+  width: 200px;
+}

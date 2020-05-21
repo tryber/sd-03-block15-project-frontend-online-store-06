@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import ProductList from './ProductList';
 import CategoryList from './CategoryList';
 import LinkToCart from './LinkToCart';
+import './ProductLibrary.css';
 
 class ProductLibrary extends React.Component {
   constructor(props) {
@@ -19,16 +20,18 @@ class ProductLibrary extends React.Component {
       order: '',
       oldOrder: {},
       unitsInCart: generalFunc.unitsInCart(),
-
     };
     this.findProducts = this.findProducts.bind(this);
     this.updateLinkCart = generalFunc.updateLinkCart.bind(this);
   }
 
   componentDidMount() {
-    api.getCategories()
+    api
+      .getCategories()
       .then((categories) => this.setState({ categories }))
-      .catch((error) => console.log('Não foi possível buscar as categorias por:', error));
+      .catch((error) =>
+        console.log('Não foi possível buscar as categorias por:', error),
+      );
   }
 
   componentDidUpdate() {
@@ -74,9 +77,7 @@ class ProductLibrary extends React.Component {
     return (
       <select
         value={order}
-        onChange={
-          (event) => this.orderChange(event, 'order')
-        }
+        onChange={(event) => this.orderChange(event, 'order')}
       >
         <option value="">Ordenar por:</option>
         <option value="Incresing">Crescente</option>
@@ -95,36 +96,43 @@ class ProductLibrary extends React.Component {
 
   async findProducts() {
     const { searchText, selectCategory } = this.state;
-    return api.getProductsFromCategoryAndQuery(selectCategory, searchText)
-      .then((elem) => this.setState({
-        products: elem.results,
-        categoryChanged: false,
-        oldOrder: elem.results,
-      }));
+    return api
+      .getProductsFromCategoryAndQuery(selectCategory, searchText)
+      .then((elem) =>
+        this.setState({
+          products: elem.results,
+          categoryChanged: false,
+          oldOrder: elem.results,
+        }),
+      );
   }
 
   render() {
     const { searchText, products, categories, selectCategory, unitsInCart } = this.state;
     return (
       <div>
+        <header>
+          <h4 className="title">
+            THE<br />CODENATOR&apos;S<br />MARKET
+          </h4>
+          <LinkToCart unitsInCart={unitsInCart} />
+          <SearchBar
+            searchText={searchText}
+            onSearchTextChange={(event) => this.textChange(event, 'searchText')}
+            onSubmit={() => this.findProducts()}
+          />
+        </header>
+        <div className="ordenar">{this.orderOfSearch()}</div>
         <CategoryList
           categories={categories}
-          selectCategory={selectCategory}
-          onCategoryChange={(event) => this.categoryChange(event, 'selectCategory')}
+          selectCategory={selectCategory} onCategoryChange={(event) =>
+            this.categoryChange(event, 'selectCategory')
+          }
         />
-        <SearchBar
-          searchText={searchText}
-          onSearchTextChange={(event) => this.textChange(event, 'searchText')}
-          onSubmit={() => this.findProducts()}
-        />
-        {this.orderOfSearch()}
         <ProductList
-          products={products}
-          searchText={searchText}
-          selectCategory={selectCategory}
-          updateLinkCart={this.updateLinkCart}
+          products={products} searchText={searchText}
+          selectCategory={selectCategory} updateLinkCart={this.updateLinkCart}
         />
-        <LinkToCart unitsInCart={unitsInCart} />
       </div>
     );
   }

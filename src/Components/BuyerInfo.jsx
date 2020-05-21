@@ -30,7 +30,9 @@ class BuyerInfo extends React.Component {
             id="fullname"
             type="text"
             value={fullname}
-            onChange={(event) => this.updateRegister('fullname', event.target.value)}
+            onChange={(event) =>
+              this.updateRegister('fullname', event.target.value)
+            }
             required
           />
         </label>
@@ -68,7 +70,9 @@ class BuyerInfo extends React.Component {
             id="email"
             type="text"
             value={email}
-            onChange={(event) => this.updateRegister('email', event.target.value)}
+            onChange={(event) =>
+              this.updateRegister('email', event.target.value)
+            }
             required
           />
         </label>
@@ -87,7 +91,9 @@ class BuyerInfo extends React.Component {
             id="email"
             type="text"
             value={phone}
-            onChange={(event) => this.updateRegister('phone', event.target.value)}
+            onChange={(event) =>
+              this.updateRegister('phone', event.target.value)
+            }
             required
           />
         </label>
@@ -125,7 +131,9 @@ class BuyerInfo extends React.Component {
             id="address"
             type="text"
             value={address}
-            onChange={(event) => this.updateRegister('address', event.target.value)}
+            onChange={(event) =>
+              this.updateRegister('address', event.target.value)
+            }
             required
           />
         </label>
@@ -143,7 +151,9 @@ class BuyerInfo extends React.Component {
             id="complement"
             type="text"
             value={complement}
-            onChange={(event) => this.updateRegister('complement', event.target.value)}
+            onChange={(event) =>
+              this.updateRegister('complement', event.target.value)
+            }
             required
           />
         </label>
@@ -161,7 +171,9 @@ class BuyerInfo extends React.Component {
             id="addressNumber"
             type="text"
             value={addressNumber}
-            onChange={(event) => this.updateRegister('addressNumber', event.target.value)}
+            onChange={(event) =>
+              this.updateRegister('addressNumber', event.target.value)
+            }
             required
           />
         </label>

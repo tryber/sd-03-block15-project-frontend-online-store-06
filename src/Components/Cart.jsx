@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import box from '../images/box.png';
 import QntButton from './QntButton';
-
+import './Cart.css';
 
 function endButton() {
   return (
@@ -10,6 +10,7 @@ function endButton() {
       <button
         data-testid="checkout-products"
         type="button"
+        className="endButton"
       >
         Finalizar Compra
       </button>
@@ -61,22 +62,28 @@ class Cart extends Component {
     if (buyListArr.length === 0) return emptyCart();
     return (
       <div>
-        {buyListArr.map(({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
-          <div className="cart" key={title}>
-            <img src={thumbnail} alt={`${title} img`} />
-            <p data-testid="shopping-cart-product-name">{title}</p>
-            <p>{`R$ ${price}`}</p>
-            {freeShipping && <p data-testid="free-shipping">FRETE GRÁTIS</p>}
-            <QntButton
-              title={title}
-              qnt={qnt}
-              min={1}
-              max={availableQuantity}
-              increaseQnt={this.increaseQnt}
-              decreaseQnt={this.decreaseQnt}
-            />
-          </div>
-        ))}
+        {buyListArr.map(
+          ({ title, thumbnail, price, qnt, availableQuantity, freeShipping }) => (
+            <div className="cart" key={title}>
+              <img src={thumbnail} alt={`${title} img`} />
+              <p className=".detalhes" data-testid="shopping-cart-product-name">
+                {title}
+              </p>
+              <QntButton
+                title={title} qnt={qnt} min={1} max={availableQuantity}
+                increaseQnt={this.increaseQnt} decreaseQnt={this.decreaseQnt}
+              />
+              <div>
+                <p>{`R$ ${price}`}</p>
+                {freeShipping && (
+                  <p data-testid="free-shipping" className="frete">
+                    FRETE GRÁTIS
+                  </p>
+                )}
+              </div>
+            </div>
+          ),
+        )}
         {endButton()}
       </div>
     );

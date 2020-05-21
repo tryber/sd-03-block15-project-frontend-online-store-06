@@ -1,0 +1,16 @@
+.bar {
+  bottom: 10%;
+  left: 30%;
+  position: relative;
+  width: 45%;
+}
+
+.searchBar {
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 30px 0;
+  padding: 7px;
+  width: 85%;
+}

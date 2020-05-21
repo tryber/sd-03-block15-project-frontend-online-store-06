@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './CategoryList.css';
 
 function CategoryList(props) {
   const { categories, onCategoryChange, selectCategory } = props;
   return (
-    <div>
-      <h1>Category List</h1>
+    <div className="CategoryList">
+      <h2>Category List:</h2>
       <ul>
         {categories.map(({ id, name }) => (
           <li key={id}>
@@ -29,10 +30,12 @@ function CategoryList(props) {
 }
 
 CategoryList.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  })).isRequired,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   onCategoryChange: PropTypes.func.isRequired,
   selectCategory: PropTypes.string.isRequired,
 };
